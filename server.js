@@ -46,16 +46,66 @@ app.get('/api', function (req, res) {
         {
           method: "GET",
           path: "api/songs",
-          description: "displays all songs by id"
+          description: "displays all songs"
+        },
+        {
+          method: "GET",
+          path: "/api/songs/:id",
+          description: "displays a song by id"
         },
         {
           method: "POST",
-          path: "/api/cities",
-          description: "adds new cities"
+          path: "/api/moods",
+          description: "adds moods to existing set"
+        },
+        {
+          method: "POST",
+          path: "/api/songs",
+          description: "adds songs to existing set"
+        },
+        {
+          method: "PUT",
+          path: "/api/songs/:id",
+          description: "finds a single song and takes in edits"
+        },
+        {
+          method: "DELETE",
+          path: "/api/moods/:id",
+          description: "deletes a single mood"
+        },
+        {
+          method: "DELETE",
+          path: "/api/songs/:id",
+          description: "deletes a single song"
         }]
       }); 
   }); 
 
+app.get('/api/moodsHardCode', function (req, res) {
+  res.json({
+  name: "Funky",
+  color: "Orange", 
+  description: "Songs that make you want to get up and groove.", 
+  imageURL: "https://ak4.picdn.net/shutterstock/videos/6062744/thumb/1.jpg", 
+  imageSpeed: 20, 
+  songs: [
+  	{
+  		name: "Breakdance Lesson",
+  		artist: "Kaytranada",
+  		url: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/252290297&amp"
+  	},
+  	{
+  		name: "Love Strong",
+  		artist: "Moon Boots",
+  		url: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/92187982&amp"
+  	},
+  	{
+  		name: "Stayin' Alive",
+  		artist: "The Bee Gees",
+  		url: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/140102039&amp"
+  	}]
+ })
+}); 
 
 /**********
  * SERVER *
