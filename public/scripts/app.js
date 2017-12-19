@@ -13,9 +13,38 @@ $(document).ready(function(){
   $(".mood").on('click', function(e) {
     $(this).css("background", "orange");
     //remove previous mood
-    displayMood(mood);
+    //displayMood(mood);
   });
 
+  $('#addMoodButton').on('click', function(e) {
+    $('#addMoodModal').modal(); //triggers modal to add new mood
+    console.log("Mood modal open!")
+      // $('form').on('submit', function(e) {
+      //   console.log("button clicked");
+      //   $.ajax({
+      //     method: 'POST',
+      //     url: '/api/moods',
+      //     data: $('form').serialize(),
+      //     success: onPostSuccess,
+      //     error: onError
+      // });
+    // });
+  });
+
+  $('#addSongButton').on('click', function(e) {
+    $('#addSongModal').modal(); //triggers modal to add a new song
+    console.log("Song modal open!")
+    // $('form').on('submit', function(e) {
+    //   console.log("button clicked");
+    //   $.ajax({
+    //     method: 'POST',
+    //     url: '/api/moods/:id/songs',
+    //     data: $('form').serialize(),
+    //     success: onPostSongSuccess,
+    //     error: onError
+    // });
+  // });
+  });
 
 
 
@@ -25,7 +54,7 @@ $(document).ready(function(){
 
 function renderMood(mood) {
 // add in correct path to color hex and mood name to display the buttons
-  let moodSelections = `<div class="row mood-selection" style="background-color:${getColorHex}"><div class="col-1 mood mood-block"><span class="mood-title">${dataNameHere}</span></div>`
+  let moodSelections = `<div class="col-2 mood" style="background-color:${mood.color}">${mood.name}</div>`
   $(".mood-selection").append(moodSelections);
 };
 

@@ -16,12 +16,24 @@
 }
 
 .add-mood {
+  border-radius: 10px;
+  text-align: center;
+  margin-right: 20px;
+  margin-top: 20px;
   color: gray;
+}
+
+.add-mood:hover {
+  background-color: lightgray;
 }
 
 .add-mood {
   border: 1px solid lightgray;
   background-color: white;
+}
+
+#colorPicker {
+  height: 40px;
 }
 
 .current-mood {
