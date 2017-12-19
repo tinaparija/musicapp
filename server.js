@@ -97,6 +97,37 @@ app.get('/api/moodsHardCode', function (req, res) {
  })
 }); 
 
+// gets all moods data 
+app.get('/api/moods', function (req, res) {
+  db.Mood.find({}, function(err, moods) {
+      res.json(moods);
+  });
+}); 
+
+//get single mood by id
+app.get('/api/moods/:id', function (req, res) {
+  db.Mood.findById(req.params.id, function(err, mood){
+      if (err) {
+        res.status(500).send(err);
+        return;
+      }
+      res.json(mood);
+    });
+});
+
+// gets all songs for a given mood
+
+app.get('/api/moods/:id/songs', function (req, res) {
+  db.Mood.findById(req.params.id, function(err, mood){
+      if (err) {
+        res.status(500).send(err);
+        return;
+      }
+      res.json(mood.songs);
+    });
+});
+
+
 /**********
  * SERVER *
  **********/
