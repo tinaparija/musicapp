@@ -1,5 +1,6 @@
 var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
+  Song = require('./song')
 
 var MoodSchema = new Schema({
   name: String,
@@ -7,12 +8,8 @@ var MoodSchema = new Schema({
   description: String, 
   imageURL: String, 
   imageSpeed: Number, 
-  songs: {
-    type: Schema.Types.ObjectId,
-    ref: 'Song'
-  }   
+  songs: [Song.schema]  
 });
-
 
 var Mood = mongoose.model('Mood', MoodSchema);
 module.exports = Mood;

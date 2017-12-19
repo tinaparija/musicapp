@@ -45,13 +45,8 @@ app.get('/api', function (req, res) {
         },
         {
           method: "GET",
-          path: "api/songs",
-          description: "displays all songs"
-        },
-        {
-          method: "GET",
-          path: "/api/songs/:id",
-          description: "displays a song by id"
+          path: "/api/:moods/songs",
+          description: "all songs in a given mood"
         },
         {
           method: "POST",
@@ -59,13 +54,8 @@ app.get('/api', function (req, res) {
           description: "adds moods to existing set"
         },
         {
-          method: "POST",
-          path: "/api/songs",
-          description: "adds songs to existing set"
-        },
-        {
           method: "PUT",
-          path: "/api/songs/:id",
+          path: "/api/:moods/songs/:id",
           description: "finds a single song and takes in edits"
         },
         {
@@ -75,7 +65,7 @@ app.get('/api', function (req, res) {
         },
         {
           method: "DELETE",
-          path: "/api/songs/:id",
+          path: "/api/moods/songs/:id",
           description: "deletes a single song"
         }]
       }); 
