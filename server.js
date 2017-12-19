@@ -81,7 +81,7 @@ app.get('/api', function (req, res) {
       }); 
   }); 
 
-app.get('/api/moods', function (req, res) {
+app.get('/api/moodsHardCode', function (req, res) {
   res.json({
   name: "Funky",
   color: "Orange", 
