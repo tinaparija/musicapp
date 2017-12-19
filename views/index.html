@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
   <link rel="stylesheet" href="/styles/styles.css">
   <!-- SCRIPTS -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
   <script defer src="https://use.fontawesome.com/releases/v5.0.1/js/all.js"></script>
@@ -17,9 +17,67 @@
 </head>
 <body>
   <div class="container">
+    <!-- header section -->
+    <div class="row mood-music">
+        <h1>Mood Music</h1>
+    </div>
+    <!-- moods section-->
+    <div class="row mood-selection">
+      <div class="col-1 mood mood-block"><span class="mood-title">CALM</span></div>
+      <div class="col-1 mood mood-block"><span class="mood-title">CALM</span></div>
+      <div class="col-1 mood mood-block"><span class="mood-title">CALM</span></div>
+    </div>
+    <!-- current mood -->
     <div class="row">
-      <div class="col-md-8 col-md-offset-2">
-        <h1>HELLO!</h1>
+      <div class="col-lg-8 current-mood">
+        <div class="col-lg-2 mood-title"><h1>CALM</h1></div>
+        <div class="col-lg-2 mood-title"><h3>SONGS</h3></div>
+        <div id="songsAccordion" class="col-lg-10" data-children=".item">
+      <!-- one accordion link -->
+          <div class="item">
+            <a data-toggle="collapse" data-parent="#songsAccordion" href="#exampleAccordion1" aria-expanded="false" aria-controls="exampleAccordion1">
+              "This is a song" by Artist
+            </a>
+            <div id="exampleAccordion1" class="collapse" role="tabpanel">
+              <div>iFrame</div>
+              <p class="mb-3">My notes about this track</p>
+              <div class="form-group col-md-6">
+                <label for="exampleFormControlTextarea1">Example textarea</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                  <button type="button" class="btn btn-light">Save</button>
+              </div>
+              <button type="button" class="btn btn-light"><i class="far fa-edit"></i></button>
+              <button type="button" class="btn btn-dark"><i class="fas fa-times"></i></button>
+            </div>
+            <!-- add buttons for edit/delete -->
+          </div>
+          <!-- one accordion link -->
+          <div class="item">
+            <a data-toggle="collapse" data-parent="#songsAccordion" href="#exampleAccordion2" aria-expanded="false" aria-controls="exampleAccordion2">
+              "This is another song" by Different Artist
+            </a>
+            <div id="exampleAccordion2" class="collapse" role="tabpanel">
+              <p class="mb-3">
+                Other notes about this track
+              </p>
+            </div>
+          </div>
+          <!-- one accordion link -->
+          <div class="item">
+            <a data-toggle="collapse" data-parent="#songsAccordion" href="#exampleAccordion3" aria-expanded="false" aria-controls="exampleAccordion2">
+              Toggle item 2
+            </a>
+            <div id="exampleAccordion3" class="collapse" role="tabpanel">
+              <p class="mb-3">
+                Donec at ipsum dignissim, rutrum turpis scelerisque, tristique lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vivamus nec dui turpis. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+              </p>
+            </div>
+          </div>
+        </div>
+    <!-- accordion end -->
+        <div class="col-lg-10">
+          <button type="button" class="btn btn-light"><i class="fas fa-plus"></i></button>
+        </div>
       </div>
     </div>
   </div>
