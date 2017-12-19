@@ -5,7 +5,7 @@ var MoodSchema = new Schema({
   name: String,
   color: String, 
   description: String, 
-  image: String, 
+  imageURL: String, 
   imageSpeed: Number, 
   songs: {
     type: Schema.Types.ObjectId,
