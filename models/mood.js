@@ -16,3 +16,4 @@ var MoodSchema = new Schema({
 
 var Mood = mongoose.model('Mood', MoodSchema);
 module.exports = Mood;
+
