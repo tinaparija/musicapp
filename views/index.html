@@ -18,8 +18,10 @@
 <body>
   <div class="container">
     <!-- header section -->
-    <div class="row mood-music">
+    <div class="row">
+      <div class="mood-music">
         <h1>Mood Music</h1>
+      </div>
     </div>
     <!-- moods section-->
     <div class="row mood-selection">
@@ -29,9 +31,12 @@
     </div>
     <!-- current mood -->
     <div class="row">
-      <div class="col-lg-8 current-mood">
-        <div class="col-lg-2 mood-title"><h1>CALM</h1></div>
-        <div class="col-lg-2 mood-title"><h3>SONGS</h3></div>
+      <div class="col-md-8 current-mood">
+        <div class="row">
+          <div class="col-md-6 mood-title"><h1>CALM</h1></div>
+          <div class="col-md-6 mood-title"><p>This is a short description of the mood</p></div>
+        </div>
+        <div class="col-md-4 mood-title"><h3>SONGS</h3></div>
         <div id="songsAccordion" class="col-lg-10" data-children=".item">
       <!-- one accordion link -->
           <div class="item">
@@ -42,8 +47,8 @@
               <div>iFrame</div>
               <p class="mb-3">My notes about this track</p>
               <div class="form-group col-md-6">
-                <label for="exampleFormControlTextarea1">Example textarea</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <label for="editNotes">Notes:</label>
+                <textarea class="form-control" id="editNotes" rows="3"></textarea>
                   <button type="button" class="btn btn-light">Save</button>
               </div>
               <button type="button" class="btn btn-light"><i class="far fa-edit"></i></button>
@@ -75,7 +80,7 @@
           </div>
         </div>
     <!-- accordion end -->
-        <div class="col-lg-10">
+        <div class="col-md-10">
           <button type="button" class="btn btn-light"><i class="fas fa-plus"></i></button>
         </div>
       </div>
