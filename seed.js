@@ -98,11 +98,18 @@ var moods_list =
 }];
 
 db.Mood.remove({}, function(err, moods){
-  // code in here runs after all moods are removed
-  db.Mood.create(moods_list, function(err, moods){
-    if (err) { return console.log('ERROR', err); }
-    console.log("all moods:", moods);
-    console.log("created", moods.length, "moods");
-  });
-});
+	db.Song.remove({}, function (err, songs) {
+		moods_list.forEach(function(moods) {
+			db.Song.create(moods.songs, function (err, savedSongs) {
+				moods.songs = savedSongs; 
+				db.Mood.create(moods, function (err, savedList){
+					console.log("saved list", savedList.name)
+				});
+			}); 
+		}); 
+	}); 
+}); 
+
+
+
 
