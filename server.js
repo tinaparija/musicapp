@@ -46,7 +46,7 @@ app.get('/api', function (req, res) {
         {
           method: "GET",
           path: "/api/:moods/songs",
-          description: "all songs in a given mood"
+          description: "displays all songs in a given mood"
         },
         {
           method: "POST",
@@ -97,14 +97,14 @@ app.get('/api/moodsHardCode', function (req, res) {
  })
 }); 
 
-// gets all moods data 
+// displays all moods 
 app.get('/api/moods', function (req, res) {
   db.Mood.find({}, function(err, moods) {
       res.json(moods);
   });
 }); 
 
-//get single mood by id
+//displays a single mood by id
 app.get('/api/moods/:id', function (req, res) {
   db.Mood.findById(req.params.id, function(err, mood){
       if (err) {
@@ -115,8 +115,7 @@ app.get('/api/moods/:id', function (req, res) {
     });
 });
 
-// gets all songs for a given mood
-
+// displays all songs in a given mood
 app.get('/api/moods/:id/songs', function (req, res) {
   db.Mood.findById(req.params.id, function(err, mood){
       if (err) {
@@ -126,6 +125,31 @@ app.get('/api/moods/:id/songs', function (req, res) {
       res.json(mood.songs);
     });
 });
+
+// adds moods to existing set
+app.post('/api/moods', function (req, res){
+  var newMood = db.Mood({
+  	name: req.body.name,
+	color: req.body.color, 
+	description: req.body.description,
+	imageURL: req.body.imageURL,
+	imageSpeed: req.body.imageSpeed, 
+	songs: req.body.songs,
+  });  
+   
+  newMood.save(function(err, newMood){
+    if(err) {return console.log(err);}
+    console.log("saved new mood: ", newMood);
+  });
+      res.json(newMood);
+})
+
+
+
+
+
+
+
 
 
 /**********
