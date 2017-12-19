@@ -18,19 +18,21 @@
 <body>
   <div class="container">
     <!-- header section -->
-    <div class="row">
+    <div class="row justify-content-center">
       <div class="mood-music">
         <h1>Mood Music</h1>
       </div>
     </div>
+    <hr>
     <!-- moods section-->
-    <div class="row mood-selection">
-      <div class="col-1 mood mood-block"><span class="mood-title">CALM</span></div>
-      <div class="col-1 mood mood-block"><span class="mood-title">CALM</span></div>
-      <div class="col-1 mood mood-block"><span class="mood-title">CALM</span></div>
+    <div class="row justify-content-center mood-selection">
+      <div class="col-2 mood">CALM</div>
+      <div class="col-2 mood">CALM</div>
+      <div class="col-2 mood">CALM</div>
+      <div class="col-2 add-mood mood">+</div>
     </div>
     <!-- current mood -->
-    <div class="row">
+    <div class="row justify-content-center">
       <div class="col-md-8 current-mood">
         <div class="row">
           <div class="col-md-6 mood-title"><h1>CALM</h1></div>
@@ -39,12 +41,12 @@
         <div class="col-md-4 mood-title"><h3>SONGS</h3></div>
         <div id="songsAccordion" class="col-lg-10" data-children=".item">
       <!-- one accordion link -->
-          <div class="item">
+          <div class="item"> <!-- add data-id -->
             <a data-toggle="collapse" data-parent="#songsAccordion" href="#exampleAccordion1" aria-expanded="false" aria-controls="exampleAccordion1">
               "This is a song" by Artist
             </a>
             <div id="exampleAccordion1" class="collapse" role="tabpanel">
-              <div>iFrame</div>
+              <div>iFrame embed goes here</div>
               <p class="mb-3">My notes about this track</p>
               <div class="form-group col-md-6">
                 <label for="editNotes">Notes:</label>
@@ -85,6 +87,12 @@
         </div>
       </div>
     </div>
+    <!-- footer section -->
+    <hr>
+    <footer class="row">
+      <div class="col-md-8">Footer</div>
+    </footer>
+
   </div>
 </body>
 </html>
