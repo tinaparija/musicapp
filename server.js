@@ -131,6 +131,7 @@ app.get('/api/moods/:id/songs', function (req, res) {
     });
 });
 
+
 // adds moods to existing set
 app.post('/api/moods', function (req, res){
   var newMood = db.Mood({
@@ -170,7 +171,7 @@ app.post('/api/moods/:moodId/songs', function (req, res){
   });
 });
 
-app.put('/api/mood/:moodId/songs/:id', function(req, res) {
+app.put('/api/moods/:moodId/songs/:id', function(req, res) {
   let moodId = req.params.moodId;
   let songId = req.params.id;
   db.Mood.findOne({_id: moodId}, function(err, foundMood) {
