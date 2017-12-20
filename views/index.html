@@ -18,32 +18,39 @@
 <body>
   <div class="container">
     <!-- header section -->
-    <div class="row mood-music">
+    <div class="row justify-content-center">
+      <div class="mood-music">
         <h1>Mood Music</h1>
+      </div>
     </div>
+    <hr>
     <!-- moods section-->
-    <div class="row mood-selection">
-      <div class="col-1 mood mood-block"><span class="mood-title">CALM</span></div>
-      <div class="col-1 mood mood-block"><span class="mood-title">CALM</span></div>
-      <div class="col-1 mood mood-block"><span class="mood-title">CALM</span></div>
+    <div class="row justify-content-center mood-selection">
+      <div class="col-2 mood">CALM</div>
+      <div class="col-2 mood">CALM</div>
+      <div class="col-2 mood">CALM</div>
+      <div class="col-2 add-mood" id="addMoodButton">+</div>
     </div>
     <!-- current mood -->
-    <div class="row">
-      <div class="col-lg-8 current-mood">
-        <div class="col-lg-2 mood-title"><h1>CALM</h1></div>
-        <div class="col-lg-2 mood-title"><h3>SONGS</h3></div>
+    <div class="row justify-content-center">
+      <div class="col-md-10 current-mood">
+        <div class="row">
+          <div class="col-md-6 mood-title"><h1>CALM</h1></div>
+          <div class="col-md-6 mood-title"><p>This is a short description of the mood</p></div>
+        </div>
+        <div class="col-md-4 mood-title"><h3>SONGS</h3></div>
         <div id="songsAccordion" class="col-lg-10" data-children=".item">
       <!-- one accordion link -->
-          <div class="item">
+          <div class="item"> <!-- add data-id -->
             <a data-toggle="collapse" data-parent="#songsAccordion" href="#exampleAccordion1" aria-expanded="false" aria-controls="exampleAccordion1">
               "This is a song" by Artist
             </a>
             <div id="exampleAccordion1" class="collapse" role="tabpanel">
-              <div>iFrame</div>
+              <div>iFrame embed goes here</div>
               <p class="mb-3">My notes about this track</p>
               <div class="form-group col-md-6">
-                <label for="exampleFormControlTextarea1">Example textarea</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <label for="editNotes">Notes:</label>
+                <textarea class="form-control" id="editNotes" rows="3"></textarea>
                   <button type="button" class="btn btn-light">Save</button>
               </div>
               <button type="button" class="btn btn-light"><i class="far fa-edit"></i></button>
@@ -75,11 +82,90 @@
           </div>
         </div>
     <!-- accordion end -->
-        <div class="col-lg-10">
-          <button type="button" class="btn btn-light"><i class="fas fa-plus"></i></button>
+        <div class="col-md-10">
+          <button type="button" id="addSongButton"class="btn btn-light"><i class="fas fa-plus"></i></button>
         </div>
       </div>
     </div>
+    <!-- modal to add new mood -->
+    <!-- Modal -->
+    <div class="modal fade" id="addMoodModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Add your mood</h5>
+            <button type="text" id="addMoodButton" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span></button>
+          </div>
+          <div class="modal-body">
+    <!-- form to add a mood begin-->
+            <form>
+              <div class="form-group">
+                <label class="col-form-label" for="moodName">Mood:</label>
+                <input type="text" class="form-control" name="name" id="moodName" maxlength="10" placeholder="Relaxed...">
+              </div>
+              <!-- select background color -->
+                <label class="form-check-label" for="colorPicker">
+                  <input class="form-check-input position-static" id="colorPicker" type="color" name="color" value="#fff000" aria-label="...">
+                Select your background color</label>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+              </div>
+              </form>
+              <!-- form to add mood end -->
+            </div>
+          </div>
+        </div>
+        <!-- form to add mood end -->
+
+        <!-- modal to add song begin -->
+        <div class="modal fade" id="addSongModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Add a song</h5>
+                <button type="text" id="addSongButton" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+              </div>
+              <div class="modal-body">
+                <!-- modal form -->
+                <form>
+                  <div class="form-group">
+                    <label class="col-form-label" for="songName">Song name</label>
+                    <input type="text" class="form-control" name="name" id="songName" placeholder="Thriller">
+                  </div>
+                  <div class="form-group">
+                    <label class="col-form-label" for="artist">Artist</label>
+                    <input type="text" class="form-control" name="artist" id="contactPhone" placeholder="Michael Jackson">
+                  </div>
+                  <div class="form-group">
+                    <label class="col-form-label" for="songLink">Link</label>
+                    <input type="text" class="form-control" name="link" id="songLink" placeholder="http://dhsjfgk.jsdh.com">
+                  </div>
+                  <div class="form-group">
+                    <label class="col-form-label" for="notes">Notes</label>
+                    <input type="text" class="form-control" name="notes" id="notes" placeholder="This is my favorite song">
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save song</button>
+                  </div>
+                </form>
+                <!-- form to add song end -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- modal to add song end  -->
+
+    <!-- footer section -->
+    <hr>
+    <footer class="row justify-content-center">
+      <div class="col-md-8">Footer</div>
+    </footer>
+
   </div>
 </body>
 </html>
