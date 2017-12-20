@@ -22,9 +22,8 @@ $(document).on('click', 'div.mood', function(e) { //displays the content of one 
 
   $('#addMoodButton').on('click', function(e) {
     $('#addMoodModal').modal(); //triggers modal to add new mood
-    console.log("Mood modal open!")
       $('form').on('submit', function(e) {
-        e.preventDefault();
+        //e.preventDefault();
         let formData = $(this).serialize();
         $.ajax({
           method: 'POST',
