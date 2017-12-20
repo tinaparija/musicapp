@@ -102,9 +102,13 @@ function displayMood(mood) {
     </div>
     <div class="col-md-6 mood-title"><h3>SONGS</h3></div>`
   let accordionDiv = `<div class="col-md-12" id="songsAccordion" data-children=".item"></div>`
+  let addSongButton = `<div class="col-md-12">
+    <button type="button" id="addSongButton"class="btn btn-light"><i class="fas fa-plus"></i></button>
+</div>`
     $(".current-mood").append(titleContent);
     $(".current-mood").append(accordionDiv);
-    displayAccordionContent(mood);
+s    displayAccordionContent(mood);
+    $(".current-mood").append(addSongButton);
 }
 
 function onGetSuccess(moodsData) {
