@@ -35,7 +35,7 @@ $(document).on('click', 'div.mood', function(e) { //displays the content of one 
     // });
   });
 
-  $('#addSongButton').on('click', function(e) {
+  $(document).on('click','#addSongButton', function(e) {
     $('#addSongModal').modal(); //triggers modal to add a new song
     console.log("Song modal open!")
     // $('form').on('submit', function(e) {
