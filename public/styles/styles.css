@@ -15,6 +15,15 @@
   color: #ffffff;
 }
 
+#instructionsAccordion {
+  text-align: center;
+  color: gray;
+}
+
+#instructionsAccordion a {
+  color: lightgray;
+}
+
 .current-mood {
   min-height: 300px;
 }

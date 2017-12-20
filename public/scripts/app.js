@@ -20,6 +20,7 @@ $(document).on('click', 'div.mood', function(e) { //displays the content of one 
     });
   });
 
+  // add new mood
   $('#addMoodButton').on('click', function(e) {
     $('#addMoodModal').modal(); //triggers modal to add new mood
       $('form').on('submit', function(e) {
@@ -55,10 +56,7 @@ $(document).on('click', 'div.mood', function(e) { //displays the content of one 
     e.preventDefault();
     var songId = $(this).data('song-id');
     var moodId = $(this).data('mood-id');
-    console.log(songId);
-    console.log(moodId);
     let reqUrl = ('/api/moods/' + moodId + '/songs/' + songId );
-    console.log(reqUrl);
     $.ajax({
       method: 'DELETE',
       url: reqUrl,
