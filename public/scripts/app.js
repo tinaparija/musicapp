@@ -10,9 +10,17 @@ $(document).ready(function(){
     error: onError
   });
 
-  $(".mood").on('click', function(e) {
-    $(this).css("background", "orange");
-    //remove previous mood
+
+$(document).on('click', 'div.mood', function(e) { //displays the content of one mood the user clicked on
+    console.log("Click detected");
+    $(".current-mood").empty(); //remove previous content
+    $.ajax({
+      method: 'GET',
+      url: '/api/moods/'+$(this).attr('data-id'),
+      success: onGetOneSuccess,
+      error: onError
+    });
+
     //displayMood(mood);
   });
 
@@ -47,25 +55,64 @@ $(document).ready(function(){
   });
 
 
-
-
-
-
-
-function renderMood(mood) {
+function renderMoodButton(mood) {
 // add in correct path to color hex and mood name to display the buttons
-  let moodSelections = `<div class="col-2 mood" style="background-color:${mood.color}">${mood.name}</div>`
-  $(".mood-selection").append(moodSelections);
+  let moodSelections = `<div class="col-2 mood" data-id=${mood._id} style="background-color:${mood.color}">${mood.name}</div>`
+  $(".mood-selection").prepend(moodSelections);
 };
 
 function displayMood(mood) {
-  //
+  $(".current-mood").css("background-color", ); // need to change div color!
+  let titleContent = `  <div class="row" data-id=${mood._id}>
+      <div class="col-md-6 mood-title"><h1>${mood.name}</h1></div>
+      <div class="col-md-6 mood-title"><p>${mood.description}</p></div>
+    </div>
+    <div class="col-md-4 mood-title"><h3>SONGS</h3></div>`
+
+  $(".current-mood").append(titleContent);
+}
+
+function displayAccordionContent(mood) {
+    let songsList = mood.songs;
+    console.log(songsList);
+      for (let i = 0; i < songsList.length; i++) {
+        let songId = songsList[i]._id;
+        let songName = songsList[i].name;
+        let songArtist = songsList[i].artist
+        let songUrl = songsList[i].url
+        let accordionHtml = `<div class="item" data-id=${songId}>
+          <a data-toggle="collapse" data-parent="#songsAccordion" href="#songAccordion${i+1}" aria-expanded="false" aria-controls="songAccordion${i+1}">
+            "${songName}" by ${songArtist}
+          </a>
+
+          <div id="songAccordion${i+1}" class="collapse" role="tabpanel">
+            <div>iFrame embed ${songUrl}</div>
+            <p class="mb-3">Append notes here</p>
+            <div class="form-group col-md-6">
+              <label for="editNotes">Notes:</label>
+              <textarea class="form-control" id="editNotes" rows="3"></textarea>
+                <button type="button" class="btn btn-light">Save</button>
+            </div>
+            <button type="button" class="btn btn-light"><i class="far fa-edit"></i></button>
+            <button type="button" class="btn btn-dark"><i class="fas fa-times"></i></button>
+          </div>
+        </div>`
+        //$("#songsAccordion").append(accordionHtml);
+        console.log(accordionHtml);
+      };
 };
 
 function onGetSuccess(moodsData) {
+  console.log(moodsData);
   moodsData.forEach(function(mood) {
-    renderMood(mood);
+    renderMoodButton(mood);
   });
+};
+
+function onGetOneSuccess(oneMood) {
+  console.log(oneMood);
+  displayMood(oneMood);
+  displayAccordionContent(oneMood);
 };
 
 function onError(err) {

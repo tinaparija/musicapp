@@ -26,8 +26,8 @@ app.get('/', function (req, res) {
 
 app.get('/api', function (req, res) {
   res.json({
-    documentationUrl: "ADD URL", 
-    baseUrl: "ADD URL", // 
+    documentationUrl: "ADD URL",
+    baseUrl: "ADD URL", //
     endpoints: [{
           method: "GET",
           path: "/api",
@@ -73,16 +73,16 @@ app.get('/api', function (req, res) {
           path: "/api/moods/moodId/songs/:id",
           description: "deletes a single song"
         }]
-      }); 
-  }); 
+      });
+  });
 
 app.get('/api/moodsHardCode', function (req, res) {
   res.json({
   name: "Funky",
-  color: "Orange", 
-  description: "Songs that make you want to get up and groove.", 
-  imageURL: "https://ak4.picdn.net/shutterstock/videos/6062744/thumb/1.jpg", 
-  imageSpeed: 20, 
+  color: "Orange",
+  description: "Songs that make you want to get up and groove.",
+  imageURL: "https://ak4.picdn.net/shutterstock/videos/6062744/thumb/1.jpg",
+  imageSpeed: 20,
   songs: [
   	{
   		name: "Breakdance Lesson",
@@ -100,14 +100,14 @@ app.get('/api/moodsHardCode', function (req, res) {
   		url: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/140102039&amp"
   	}]
  })
-}); 
+});
 
-// displays all moods 
+// displays all moods
 app.get('/api/moods', function (req, res) {
   db.Mood.find({}, function(err, moods) {
       res.json(moods);
   });
-}); 
+});
 
 //displays a single mood by id
 app.get('/api/moods/:id', function (req, res) {
@@ -135,13 +135,13 @@ app.get('/api/moods/:id/songs', function (req, res) {
 app.post('/api/moods', function (req, res){
   var newMood = db.Mood({
   	name: req.body.name,
-  	color: req.body.color, 
+  	color: req.body.color,
   	description: req.body.description,
   	imageURL: req.body.imageURL,
-  	imageSpeed: req.body.imageSpeed, 
+  	imageSpeed: req.body.imageSpeed,
   	songs: req.body.songs,
-  });  
-   
+    });
+
   newMood.save(function(err, newMood){
     if(err) {return console.log(err);}
     console.log("saved new mood: ", newMood);
