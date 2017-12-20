@@ -201,13 +201,13 @@ app.delete('/api/moods/:moodId/songs/:id', function (req, res){
   var songId = req.params.id;
   console.log(req.params);
 
-  db.Album.findOne({_id:moodId}, function (err, foundMood){
+  db.Mood.findOne({_id:moodId}, function (err, foundMood){
     if(err){console.log(error, err);}
 
     var foundSong = foundMood.songs.id(songId);
     foundSong.remove();
 
-    foundAlbum.save(function(err, saved){
+    foundMood.save(function(err, saved){
       if(err) {console.log('error', err);}
       res.json(saved);
     });
