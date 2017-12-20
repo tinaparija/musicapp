@@ -12,16 +12,12 @@ $(document).ready(function(){
 
 
 $(document).on('click', 'div.mood', function(e) { //displays the content of one mood the user clicked on
-    console.log("Click detected");
-    $(".current-mood").empty(); //remove previous content
     $.ajax({
       method: 'GET',
       url: '/api/moods/'+$(this).attr('data-id'),
       success: onGetOneSuccess,
       error: onError
     });
-
-    //displayMood(mood);
   });
 
   $('#addMoodButton').on('click', function(e) {
@@ -56,23 +52,19 @@ $(document).on('click', 'div.mood', function(e) { //displays the content of one 
 
 
 function renderMoodButton(mood) {
-// add in correct path to color hex and mood name to display the buttons
   let moodSelections = `<div class="col-2 mood" data-id=${mood._id} style="background-color:${mood.color}">${mood.name}</div>`
   $(".mood-selection").prepend(moodSelections);
 };
 
-function displayMood(mood) {
-  $(".current-mood").css("background-color", ); // need to change div color!
-  let titleContent = `  <div class="row" data-id=${mood._id}>
-      <div class="col-md-6 mood-title"><h1>${mood.name}</h1></div>
-      <div class="col-md-6 mood-title"><p>${mood.description}</p></div>
-    </div>
-    <div class="col-md-4 mood-title"><h3>SONGS</h3></div>`
-
-  $(".current-mood").append(titleContent);
+function changeMoodBackground(mood) {
+  let moodColor = mood.color;
+  $(".current-mood").css("background-color", moodColor);
 }
 
+
+
 function displayAccordionContent(mood) {
+    $("#songsAccordion").empty();
     let songsList = mood.songs;
     console.log(songsList);
       for (let i = 0; i < songsList.length; i++) {
@@ -97,10 +89,23 @@ function displayAccordionContent(mood) {
             <button type="button" class="btn btn-dark"><i class="fas fa-times"></i></button>
           </div>
         </div>`
-        //$("#songsAccordion").append(accordionHtml);
+        $("#songsAccordion").append(accordionHtml);
         console.log(accordionHtml);
       };
 };
+
+function displayMood(mood) {
+  $(".current-mood").empty();
+  let titleContent = `<div class="row" data-id=${mood._id}>
+      <div class="col-md-6 mood-title"><h1>${mood.name}</h1></div>
+      <div class="col-md-6 mood-title"><p>${mood.description}</p></div>
+    </div>
+    <div class="col-md-6 mood-title"><h3>SONGS</h3></div>`
+  let accordionDiv = `<div class="col-md-12" id="songsAccordion" data-children=".item"></div>`
+    $(".current-mood").append(titleContent);
+    $(".current-mood").append(accordionDiv);
+    displayAccordionContent(mood);
+}
 
 function onGetSuccess(moodsData) {
   console.log(moodsData);
@@ -110,9 +115,10 @@ function onGetSuccess(moodsData) {
 };
 
 function onGetOneSuccess(oneMood) {
-  console.log(oneMood);
+  changeMoodBackground(oneMood);
+  //console.log(oneMood);
   displayMood(oneMood);
-  displayAccordionContent(oneMood);
+  //displayAccordionContent(oneMood);
 };
 
 function onError(err) {
