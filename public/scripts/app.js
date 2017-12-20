@@ -11,8 +11,8 @@ $(document).ready(function(){
   });
 
   $(".mood").on('click', function(e) {
-    $(this).css("background", "orange");
-    //remove previous mood
+    console.log("Clicked!");
+    //remove previous mood, display content of new one
     //displayMood(mood);
   });
 
@@ -52,19 +52,46 @@ $(document).ready(function(){
 
 
 
-function renderMood(mood) {
+function renderMoodButton(mood) {
 // add in correct path to color hex and mood name to display the buttons
   let moodSelections = `<div class="col-2 mood" style="background-color:${mood.color}">${mood.name}</div>`
-  $(".mood-selection").append(moodSelections);
+  $(".mood-selection").prepend(moodSelections);
 };
 
 function displayMood(mood) {
-  //
+  let songName;
+  let songArtist;
+  let songLink;
+  let songNotes;
+  let titleContent = `  <div class="row">
+      <div class="col-md-6 mood-title"><h1>${mood.name}</h1></div>
+      <div class="col-md-6 mood-title"><p>${mood.description}</p></div>
+    </div>
+    <div class="col-md-4 mood-title"><h3>SONGS</h3></div>`
+  let accordionHtml = `<div class="item">
+    <a data-toggle="collapse" data-parent="#songsAccordion" href="#exampleAccordion1" aria-expanded="false" aria-controls="exampleAccordion1">
+      ${songName} by ${songArtist}
+    </a>
+    <div id="exampleAccordion1" class="collapse" role="tabpanel">
+      <div>iFrame embed ${songLink}</div>
+      <p class="mb-3">${songNotes}</p>
+      <div class="form-group col-md-6">
+        <label for="editNotes">Notes:</label>
+        <textarea class="form-control" id="editNotes" rows="3"></textarea>
+          <button type="button" class="btn btn-light">Save</button>
+      </div>
+      <button type="button" class="btn btn-light"><i class="far fa-edit"></i></button>
+      <button type="button" class="btn btn-dark"><i class="fas fa-times"></i></button>
+    </div>
+    <!-- add buttons for edit/delete -->
+  </div>`
+  $("").append(titleContent);
 };
 
 function onGetSuccess(moodsData) {
+  console.log(moodsData);
   moodsData.forEach(function(mood) {
-    renderMood(mood);
+    renderMoodButton(mood);
   });
 };
 
