@@ -66,9 +66,9 @@ function displayAccordionContent(mood) {
       for (let i = 0; i < songsList.length; i++) {
         let songId = songsList[i]._id;
         let songName = songsList[i].name;
-        let songArtist = songsList[i].artist
-        let songUrl = songsList[i].url
-        //let songNotes = songsList[i].notes; //add notes to code
+        let songArtist = songsList[i].artist;
+        let songUrl = songsList[i].url;
+        let songNotes = songsList[i].notes;
         let accordionHtml = `<div class="item" data-id=${songId}>
           <a data-toggle="collapse" data-parent="#songsAccordion" href="#songAccordion${i+1}" aria-expanded="false" aria-controls="songAccordion${i+1}">
             "${songName}" by ${songArtist}
@@ -77,8 +77,8 @@ function displayAccordionContent(mood) {
           <div id="songAccordion${i+1}" class="collapse" role="tabpanel">
             <div><iframe width="50%" height="300" scrolling="no" frameborder="no" src="${songUrl}&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe></div>
 
-            <p class="mb-3">Append notes here</p>
-            <div class="form-group col-md-6">
+            <p class="mb-3">${songNotes}</p>
+            <div class="form-group col-md-6" style="display: none">
               <label for="editNotes">Notes:</label>
               <textarea class="form-control" id="editNotes" rows="3"></textarea>
                 <button type="button" class="btn btn-light">Save</button>
