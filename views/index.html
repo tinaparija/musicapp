@@ -31,54 +31,9 @@
     <!-- current mood -->
     <div class="row justify-content-center">
       <div class="col-md-10 current-mood">
-        <div class="row">
-          <div class="col-md-6 mood-title"><h1>CALM</h1></div>
-          <div class="col-md-6 mood-title"><p>This is a short description of the mood</p></div>
-        </div>
-        <div class="col-md-4 mood-title"><h3>SONGS</h3></div>
-
+        <!-- append title content -->
         <div id="songsAccordion" class="col-lg-10" data-children=".item">
-      <!-- one accordion link -->
-          <div class="item"> <!-- add data-id -->
-            <a data-toggle="collapse" data-parent="#songsAccordion" href="#exampleAccordion1" aria-expanded="false" aria-controls="exampleAccordion1">
-              "This is a song" by Artist
-            </a>
-            <div id="exampleAccordion1" class="collapse" role="tabpanel">
-              <div><iframe width="100%" height="100" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/41395010&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>
-</div>
-              <p class="mb-3">My notes about this track</p>
-              <div class="form-group col-md-6" style="display:none;">
-                <label for="editNotes">Notes:</label>
-                <textarea class="form-control" id="editNotes" rows="3"></textarea>
-                  <button type="button" class="btn btn-light">Save</button>
-              </div>
-              <button type="button" class="btn btn-light"><i class="far fa-edit"></i></button>
-              <button type="button" class="btn btn-dark"><i class="fas fa-times"></i></button>
-            </div>
-            <!-- add buttons for edit/delete -->
-          </div>
-          <!-- one accordion link -->
-          <div class="item">
-            <a data-toggle="collapse" data-parent="#songsAccordion" href="#exampleAccordion2" aria-expanded="false" aria-controls="exampleAccordion2">
-              "This is another song" by Different Artist
-            </a>
-            <div id="exampleAccordion2" class="collapse" role="tabpanel">
-              <p class="mb-3">
-                Other notes about this track
-              </p>
-            </div>
-          </div>
-          <!-- one accordion link -->
-          <div class="item">
-            <a data-toggle="collapse" data-parent="#songsAccordion" href="#exampleAccordion3" aria-expanded="false" aria-controls="exampleAccordion2">
-              Toggle item 2
-            </a>
-            <div id="exampleAccordion3" class="collapse" role="tabpanel">
-              <p class="mb-3">
-                Donec at ipsum dignissim, rutrum turpis scelerisque, tristique lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vivamus nec dui turpis. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-              </p>
-            </div>
-          </div>
+          <!-- append accordion content -->
         </div>
     <!-- accordion end -->
         <div class="col-md-10">

@@ -10,9 +10,17 @@ $(document).ready(function(){
     error: onError
   });
 
-  $(".mood").on('click', function(e) { //displays the content of the mood user clicked on
+
+$(document).on('click', 'div.mood', function(e) { //displays the content of one mood the user clicked on
     console.log("Click detected");
-    //remove previous mood, display content of new one
+    $(".current-mood").empty(); //remove previous content
+    $.ajax({
+      method: 'GET',
+      url: '/api/moods/'+$(this).attr('data-id'),
+      success: onGetOneSuccess,
+      error: onError
+    });
+
     //displayMood(mood);
   });
 
@@ -47,48 +55,51 @@ $(document).ready(function(){
   });
 
 
-
-
-
-
-
 function renderMoodButton(mood) {
 // add in correct path to color hex and mood name to display the buttons
-  let moodSelections = `<div class="col-2 mood" style="background-color:${mood.color}">${mood.name}</div>`
+  let moodSelections = `<div class="col-2 mood" data-id=${mood._id} style="background-color:${mood.color}">${mood.name}</div>`
   $(".mood-selection").prepend(moodSelections);
 };
 
 function displayMood(mood) {
-
-  let titleContent = `  <div class="row">
+  $(".current-mood").css("background-color", ); // need to change div color!
+  let titleContent = `  <div class="row" data-id=${mood._id}>
       <div class="col-md-6 mood-title"><h1>${mood.name}</h1></div>
       <div class="col-md-6 mood-title"><p>${mood.description}</p></div>
     </div>
     <div class="col-md-4 mood-title"><h3>SONGS</h3></div>`
-  let accordionHtml = `<div class="item">
-    <a data-toggle="collapse" data-parent="#songsAccordion" href="#exampleAccordion${counter}" aria-expanded="false" aria-controls="exampleAccordion1">
-      ${songsList.name} by ${songList.artist}
-    </a>
-    <div id="exampleAccordion${counter}" class="collapse" role="tabpanel">
-      <div>iFrame embed ${songList.url}</div>
-      <p class="mb-3">${songNotes}</p>
-      <div class="form-group col-md-6">
-        <label for="editNotes">Notes:</label>
-        <textarea class="form-control" id="editNotes" rows="3"></textarea>
-          <button type="button" class="btn btn-light">Save</button>
-      </div>
-      <button type="button" class="btn btn-light"><i class="far fa-edit"></i></button>
-      <button type="button" class="btn btn-dark"><i class="fas fa-times"></i></button>
-    </div>
-  </div>`
-  $("#songsAccordion").append(titleContent);
-    let songsList = mood.songs;
-    let counter = 1;
-    songList.forEach(function(song){
-      $("#songsAccordion").append(accordionHtml);
-      counter++;
-    });
 
+  $(".current-mood").append(titleContent);
+}
+
+function displayAccordionContent(mood) {
+    let songsList = mood.songs;
+    console.log(songsList);
+      for (let i = 0; i < songsList.length; i++) {
+        let songId = songsList[i]._id;
+        let songName = songsList[i].name;
+        let songArtist = songsList[i].artist
+        let songUrl = songsList[i].url
+        let accordionHtml = `<div class="item" data-id=${songId}>
+          <a data-toggle="collapse" data-parent="#songsAccordion" href="#songAccordion${i+1}" aria-expanded="false" aria-controls="songAccordion${i+1}">
+            "${songName}" by ${songArtist}
+          </a>
+
+          <div id="songAccordion${i+1}" class="collapse" role="tabpanel">
+            <div>iFrame embed ${songUrl}</div>
+            <p class="mb-3">Append notes here</p>
+            <div class="form-group col-md-6">
+              <label for="editNotes">Notes:</label>
+              <textarea class="form-control" id="editNotes" rows="3"></textarea>
+                <button type="button" class="btn btn-light">Save</button>
+            </div>
+            <button type="button" class="btn btn-light"><i class="far fa-edit"></i></button>
+            <button type="button" class="btn btn-dark"><i class="fas fa-times"></i></button>
+          </div>
+        </div>`
+        //$("#songsAccordion").append(accordionHtml);
+        console.log(accordionHtml);
+      };
 };
 
 function onGetSuccess(moodsData) {
@@ -96,6 +107,12 @@ function onGetSuccess(moodsData) {
   moodsData.forEach(function(mood) {
     renderMoodButton(mood);
   });
+};
+
+function onGetOneSuccess(oneMood) {
+  console.log(oneMood);
+  displayMood(oneMood);
+  displayAccordionContent(oneMood);
 };
 
 function onError(err) {
