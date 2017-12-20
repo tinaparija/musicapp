@@ -72,13 +72,15 @@ function displayAccordionContent(mood) {
         let songName = songsList[i].name;
         let songArtist = songsList[i].artist
         let songUrl = songsList[i].url
+        //let songNotes = songsList[i].notes; //add notes to code
         let accordionHtml = `<div class="item" data-id=${songId}>
           <a data-toggle="collapse" data-parent="#songsAccordion" href="#songAccordion${i+1}" aria-expanded="false" aria-controls="songAccordion${i+1}">
             "${songName}" by ${songArtist}
           </a>
 
           <div id="songAccordion${i+1}" class="collapse" role="tabpanel">
-            <div>iFrame embed ${songUrl}</div>
+            <div><iframe width="100%" height="450" scrolling="no" frameborder="no" src="${songUrl}}&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe></div>
+
             <p class="mb-3">Append notes here</p>
             <div class="form-group col-md-6">
               <label for="editNotes">Notes:</label>
@@ -102,9 +104,11 @@ function displayMood(mood) {
     </div>
     <div class="col-md-6 mood-title"><h3>SONGS</h3></div>`
   let accordionDiv = `<div class="col-md-12" id="songsAccordion" data-children=".item"></div>`
+  let addSongButton = `<div class="col-md-12"><button type="button" id="addSongButton"class="btn btn-light"><i class="fas fa-plus"></i></button></div>`
     $(".current-mood").append(titleContent);
     $(".current-mood").append(accordionDiv);
     displayAccordionContent(mood);
+    $(".current-mood").append(addSongButton);
 }
 
 function onGetSuccess(moodsData) {
