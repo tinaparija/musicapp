@@ -56,7 +56,7 @@ app.get('/api', function (req, res) {
         {
           method: "POST",
           path: "/api/moods/:moodId/songs",
-          description: "adds moods to existing set"
+          description: "adds songs to existing mood"
         },
         {
           method: "PUT",
@@ -166,6 +166,19 @@ app.post('/api/moods/:moodId/songs', function (req, res){
       if (err) {console.log('error', err)}
       console.log('mood with new song saved:', savedMood);
       res.json(song);
+    });
+  });
+});
+
+app.put('/api/mood/:moodId/songs/:id', function(req, res) {
+  let moodId = req.params.moodId;
+  let songId = req.params.id;
+  db.Mood.findOne({_id: moodId}, function(err, foundMood) {
+    let foundSong = foundMood.songs.id(songId);
+    foundSong.notes = req.body.notes;
+    foundMood.save(function(err, saved) {
+      if (err) {console.log('error ', err)}
+      res.json(saved);
     });
   });
 });
