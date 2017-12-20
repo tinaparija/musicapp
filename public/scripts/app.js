@@ -10,8 +10,8 @@ $(document).ready(function(){
     error: onError
   });
 
-  $(".mood").on('click', function(e) {
-    console.log("Clicked!");
+  $(".mood").on('click', function(e) { //displays the content of the mood user clicked on
+    console.log("Click detected");
     //remove previous mood, display content of new one
     //displayMood(mood);
   });
@@ -59,21 +59,18 @@ function renderMoodButton(mood) {
 };
 
 function displayMood(mood) {
-  let songName;
-  let songArtist;
-  let songLink;
-  let songNotes;
+
   let titleContent = `  <div class="row">
       <div class="col-md-6 mood-title"><h1>${mood.name}</h1></div>
       <div class="col-md-6 mood-title"><p>${mood.description}</p></div>
     </div>
     <div class="col-md-4 mood-title"><h3>SONGS</h3></div>`
   let accordionHtml = `<div class="item">
-    <a data-toggle="collapse" data-parent="#songsAccordion" href="#exampleAccordion1" aria-expanded="false" aria-controls="exampleAccordion1">
-      ${songName} by ${songArtist}
+    <a data-toggle="collapse" data-parent="#songsAccordion" href="#exampleAccordion${counter}" aria-expanded="false" aria-controls="exampleAccordion1">
+      ${songsList.name} by ${songList.artist}
     </a>
-    <div id="exampleAccordion1" class="collapse" role="tabpanel">
-      <div>iFrame embed ${songLink}</div>
+    <div id="exampleAccordion${counter}" class="collapse" role="tabpanel">
+      <div>iFrame embed ${songList.url}</div>
       <p class="mb-3">${songNotes}</p>
       <div class="form-group col-md-6">
         <label for="editNotes">Notes:</label>
@@ -83,9 +80,15 @@ function displayMood(mood) {
       <button type="button" class="btn btn-light"><i class="far fa-edit"></i></button>
       <button type="button" class="btn btn-dark"><i class="fas fa-times"></i></button>
     </div>
-    <!-- add buttons for edit/delete -->
   </div>`
-  $("").append(titleContent);
+  $("#songsAccordion").append(titleContent);
+    let songsList = mood.songs;
+    let counter = 1;
+    songList.forEach(function(song){
+      $("#songsAccordion").append(accordionHtml);
+      counter++;
+    });
+
 };
 
 function onGetSuccess(moodsData) {
