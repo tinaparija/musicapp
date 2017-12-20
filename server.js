@@ -147,7 +147,7 @@ app.post('/api/moods', function (req, res){
     console.log("saved new mood: ", newMood);
   });
       res.json(newMood);
-}); 
+});
 
 // adds songs to a mood
 
@@ -156,8 +156,8 @@ app.post('/api/moods/:moodId/songs', function (req, res){
     if(err){console.log('error', err);}
 
     var song = new db.Song({
-      name: req.body.name, 
-      artist: req.body.artist, 
+      name: req.body.name,
+      artist: req.body.artist,
       url: req.body.url
     });
 
@@ -176,15 +176,15 @@ app.delete('/api/moods/:id', function(req, res) {
   db.Mood.remove({_id: req.params.id}, function(err) {
     if (err) { return console.log(err); }
     console.log("removal of id=" + req.params.id  + " successful.");
-    res.status(200).send(); 
+    res.status(200).send();
   });
 });
 
 // deletes a song from a mood
 
 app.delete('/api/moods/:moodId/songs/:id', function (req, res){
-  var moodId = req.params.moodId; 
-  var songId = req.params.id; 
+  var moodId = req.params.moodId;
+  var songId = req.params.id;
   console.log(req.params);
 
   db.Album.findOne({_id:moodId}, function (err, foundMood){
