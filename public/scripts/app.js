@@ -79,7 +79,7 @@ function displayAccordionContent(mood) {
           </a>
 
           <div id="songAccordion${i+1}" class="collapse" role="tabpanel">
-            <div><iframe width="100%" height="450" scrolling="no" frameborder="no" src="${songUrl}}&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe></div>
+            <div><iframe width="100%" height="450" scrolling="no" frameborder="no" src="${songUrl}&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe></div>
 
             <p class="mb-3">Append notes here</p>
             <div class="form-group col-md-6">
