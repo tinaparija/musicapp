@@ -20,8 +20,6 @@ $(document).on('click', 'div.mood', function(e) { //displays the content of one 
       success: onGetOneSuccess,
       error: onError
     });
-
-    //displayMood(mood);
   });
 
   $('#addMoodButton').on('click', function(e) {
@@ -62,14 +60,15 @@ function renderMoodButton(mood) {
 };
 
 function displayMood(mood) {
-  $(".current-mood").css("background-color", ); // need to change div color!
+  let divColor = mood.color
+  $(".current-mood").css("background-color", divColor); // need to change div color!
   let titleContent = `  <div class="row" data-id=${mood._id}>
       <div class="col-md-6 mood-title"><h1>${mood.name}</h1></div>
       <div class="col-md-6 mood-title"><p>${mood.description}</p></div>
     </div>
     <div class="col-md-4 mood-title"><h3>SONGS</h3></div>`
 
-  $(".current-mood").append(titleContent);
+  $(".mood-content").append(titleContent);
 }
 
 function displayAccordionContent(mood) {
@@ -97,7 +96,7 @@ function displayAccordionContent(mood) {
             <button type="button" class="btn btn-dark"><i class="fas fa-times"></i></button>
           </div>
         </div>`
-        //$("#songsAccordion").append(accordionHtml);
+        $("#songsAccordion").append(accordionHtml);
         console.log(accordionHtml);
       };
 };
