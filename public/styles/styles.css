@@ -15,6 +15,10 @@
   color: #ffffff;
 }
 
+.current-mood {
+  min-height: 300px;
+}
+
 .add-mood {
   border-radius: 10px;
   text-align: center;
@@ -30,6 +34,10 @@
 .add-mood {
   border: 1px solid lightgray;
   background-color: white;
+}
+
+.mood:hover {
+  opacity: 0.7;
 }
 
 #colorPicker {
