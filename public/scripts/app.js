@@ -50,6 +50,25 @@ $(document).on('click', 'div.mood', function(e) { //displays the content of one 
   // });
   });
 
+  //delete a song on click of X button
+  $(document).on('click', '.delete', function(e) {
+    e.preventDefault();
+    var songId = $(this).data('song-id');
+    var moodId = $(this).data('mood-id');
+    console.log(songId);
+    console.log(moodId);
+    let reqUrl = ('/api/moods/' + moodId + '/songs/' + songId );
+    console.log(reqUrl);
+    $.ajax({
+      method: 'DELETE',
+      url: reqUrl,
+      success: function(data) {
+        displayMood(data);
+      },
+      error: onError
+    });
+  });
+
 function renderMoodButton(mood) {
   let moodSelections = `<div class="col-2 mood" data-id=${mood._id} style="background-color:${mood.color}">${mood.name}</div>`
   $(".mood-selection").prepend(moodSelections);
@@ -69,7 +88,7 @@ function displayAccordionContent(mood) {
         let songArtist = songsList[i].artist;
         let songUrl = songsList[i].url;
         let songNotes = songsList[i].notes;
-        let accordionHtml = `<div class="item" data-id=${songId}>
+        let accordionHtml = `<div class="item" data-song-id=${songId}>
           <a data-toggle="collapse" data-parent="#songsAccordion" href="#songAccordion${i+1}" aria-expanded="false" aria-controls="songAccordion${i+1}">
             "${songName}" by ${songArtist}
           </a>
@@ -83,8 +102,8 @@ function displayAccordionContent(mood) {
               <textarea class="form-control" id="editNotes" rows="3"></textarea>
                 <button type="button" class="btn btn-light">Save</button>
             </div>
-            <button type="button" class="btn btn-light"><i class="far fa-edit"></i></button>
-            <button type="button" class="btn btn-dark"><i class="fas fa-times"></i></button>
+            <button type="button" class="btn btn-light edit"><i class="far fa-edit"></i></button>
+            <button type="button" data-song-id=${songId} data-mood-id=${mood._id} class="btn btn-dark delete"><i class="fas fa-times"></i></button>
           </div>
         </div>`
         $("#songsAccordion").append(accordionHtml);
@@ -93,7 +112,7 @@ function displayAccordionContent(mood) {
 
 function displayMood(mood) {
   $(".current-mood").empty();
-  let titleContent = `<div class="row" data-id=${mood._id}>
+  let titleContent = `<div class="row" data-mood-id=${mood._id}>
       <div class="col-md-6 mood-title"><h1>${mood.name}</h1></div>
       <div class="col-md-6 mood-title"><p>${mood.description}</p></div>
     </div>
