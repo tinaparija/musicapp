@@ -23,16 +23,17 @@ $(document).on('click', 'div.mood', function(e) { //displays the content of one 
   $('#addMoodButton').on('click', function(e) {
     $('#addMoodModal').modal(); //triggers modal to add new mood
     console.log("Mood modal open!")
-      // $('form').on('submit', function(e) {
-      //   console.log("button clicked");
-      //   $.ajax({
-      //     method: 'POST',
-      //     url: '/api/moods',
-      //     data: $('form').serialize(),
-      //     success: onPostSuccess,
-      //     error: onError
-      // });
-    // });
+      $('form').on('submit', function(e) {
+        e.preventDefault();
+        let formData = $(this).serialize();
+        $.ajax({
+          method: 'POST',
+          url: '/api/moods',
+          data: formData,
+          success: onPostOneSuccess,
+          error: onError
+      });
+    });
   });
 
   $(document).on('click','#addSongButton', function(e) {
@@ -50,7 +51,6 @@ $(document).on('click', 'div.mood', function(e) { //displays the content of one 
   // });
   });
 
-
 function renderMoodButton(mood) {
   let moodSelections = `<div class="col-2 mood" data-id=${mood._id} style="background-color:${mood.color}">${mood.name}</div>`
   $(".mood-selection").prepend(moodSelections);
@@ -61,12 +61,9 @@ function changeMoodBackground(mood) {
   $(".current-mood").css("background-color", moodColor);
 }
 
-
-
 function displayAccordionContent(mood) {
     $("#songsAccordion").empty();
     let songsList = mood.songs;
-    console.log(songsList);
       for (let i = 0; i < songsList.length; i++) {
         let songId = songsList[i]._id;
         let songName = songsList[i].name;
@@ -79,7 +76,7 @@ function displayAccordionContent(mood) {
           </a>
 
           <div id="songAccordion${i+1}" class="collapse" role="tabpanel">
-            <div><iframe width="100%" height="450" scrolling="no" frameborder="no" src="${songUrl}&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe></div>
+            <div><iframe width="50%" height="300" scrolling="no" frameborder="no" src="${songUrl}&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe></div>
 
             <p class="mb-3">Append notes here</p>
             <div class="form-group col-md-6">
@@ -92,7 +89,6 @@ function displayAccordionContent(mood) {
           </div>
         </div>`
         $("#songsAccordion").append(accordionHtml);
-        console.log(accordionHtml);
       };
 };
 
@@ -120,9 +116,12 @@ function onGetSuccess(moodsData) {
 
 function onGetOneSuccess(oneMood) {
   changeMoodBackground(oneMood);
-  //console.log(oneMood);
   displayMood(oneMood);
-  //displayAccordionContent(oneMood);
+};
+
+function onPostOneSuccess(postedSong) {
+  renderMoodButton(postedSong);
+  onGetOneSuccess(postedSong);
 };
 
 function onError(err) {
