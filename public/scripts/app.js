@@ -12,6 +12,8 @@ $(document).ready(function(){
 
 
   $(document).on('click', 'div.mood', function(e) { //displays the content of one mood the user clicked on
+      $(".mood").removeClass('active');
+      $(this).addClass('active');
       $.ajax({
         method: 'GET',
         url: '/api/moods/'+$(this).attr('data-id'),
@@ -39,7 +41,7 @@ $(document).ready(function(){
     $('#addSongModal').modal(); //triggers modal to add a new song
     console.log("Song modal open!")
     let moodId = $(this).data('mood-id');
-    console.log(moodId);
+  //  console.log(moodId);
     $('form').on('submit', function(e) {
       e.preventDefault();
       $.ajax({
@@ -48,8 +50,8 @@ $(document).ready(function(){
         data: $('form').serialize(),
         success: onPostSongSuccess,
         error: onError
+      });
     });
-  });
   });
 
   // edit notes on a song
@@ -91,6 +93,18 @@ $(document).ready(function(){
       },
       error: onError
     });
+  });
+
+  //delete a mood (add delete mood button)
+  $(document).on('click', '#deleteMoodButton', function(e) {
+    console.log("Delete button clicked");
+    // let moodId =
+    //$.ajax({
+    // method: 'DELETE',
+    // url: ()'/api/moods/' + moodId ),
+    // success: onDeleteSuccess,
+    //error: on Error
+    // });
   });
 
 
