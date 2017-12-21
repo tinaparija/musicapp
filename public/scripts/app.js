@@ -52,21 +52,22 @@ $(document).ready(function(){
   });
   });
 
-  // edit notes on a song 
+  // edit notes on a song
   $(document).on('click', '.edit', function(e) {
     e.preventDefault();
     console.log("edit button clicked");
     $(".editSpace").show();
     let songId = $(this).data('song-id');
     let moodId = $(this).data('mood-id');
-    let reqUrl = ('/api/moods/' + moodId + '/songs/' + songId); 
+    let reqUrl = ('/api/moods/' + moodId + '/songs/' + songId);
 
     $(document).on('click','.editSave', function(e){
-      let editVal = $("textarea#editNotes").html();
+      console.log('save button clicked');
+      let editVal = $("textarea#editNotes").val();
       console.log("here is the text", editVal);
       $.ajax({
-        method: "PUT", 
-        url: reqUrl, 
+        method: "PUT",
+        url: reqUrl,
         success: function(data) {
           displayMood(data);
         },
