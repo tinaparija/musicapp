@@ -153,6 +153,7 @@ app.post('/api/moods', function (req, res){
 // adds songs to a mood
 
 app.post('/api/moods/:moodId/songs', function (req, res){
+  console.log(req);
   let song = new db.Song({
       name: req.body.name,
       artist: req.body.artist,

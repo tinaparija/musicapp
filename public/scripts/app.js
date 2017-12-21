@@ -25,7 +25,7 @@ $(document).ready(function(){
   // add new mood
   $('#addMoodButton').on('click', function(e) {
     $('#addMoodModal').modal(); //triggers modal to add new mood
-      $('form').on('submit', function(e) {
+      $('#addMood').on('submit', function(e) {
         let formData = $(this).serialize();
         $.ajax({
           method: 'POST',
@@ -41,12 +41,13 @@ $(document).ready(function(){
     $('#addSongModal').modal(); //triggers modal to add a new song
     console.log("Song modal open!")
     let moodId = $(this).data('mood-id');
-      $('form').on('submit', function(e) {
+      $('#addSongForm').on('submit', function(e) {
+        console.log($(this).serialize());
         e.preventDefault();
         $.ajax({
           method: 'POST',
           url: ('/api/moods/'+moodId+'/songs'),
-          data: $('form').serialize(),
+          data: $('#addSongForm').serialize(),
           success: onPostSongSuccess,
           error: onError
         });
@@ -64,7 +65,7 @@ $(document).ready(function(){
 
     $(document).on('click','.editSave', function(e){
       console.log('save button clicked');
-      let editVal = $("textarea#editNotes").val();
+      let editVal = $("textarea.editNotes").val();
       console.log("here is the text", editVal);
       $.ajax({
         method: "PUT",
@@ -136,7 +137,7 @@ $(document).ready(function(){
           <p class="mb-3">${songNotes}</p>
           <div class="form-group col-md-6 editSpace" style="display: none">
             <label for="editNotes">Notes:</label>
-            <textarea class="form-control" id="editNotes" rows="3" name="notes"></textarea>
+            <textarea class="form-control editNotes" rows="3" name="notes"></textarea>
               <button type="button" class="btn btn-light editSave">Save</button>
           </div>
           <button type="button" data-song-id=${songId} data-mood-id=${mood._id} class="btn btn-light edit"><i class="far fa-edit"></i></button>
