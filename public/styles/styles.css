@@ -23,6 +23,7 @@ a {
   border-color: gray;
 }
 
+
 #instructionsAccordion {
   text-align: center;
   color: gray;
@@ -34,7 +35,6 @@ a {
 
 .current-mood {
   min-height: 400px;
-  background-color: lightblue;
 }
 
 .add-mood {
