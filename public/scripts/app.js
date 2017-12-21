@@ -132,10 +132,8 @@ $(document).ready(function(){
             <a data-toggle="collapse" data-parent="#songsAccordion" href="#songAccordion${i+1}" aria-expanded="false" aria-controls="songAccordion${i+1}">
               "${songName}" by ${songArtist}
             </a>
-
             <div id="songAccordion${i+1}" class="collapse" role="tabpanel">
               <div><iframe width="50%" height="300" scrolling="no" frameborder="no" src="${songUrl}&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe></div>
-
               <p class="mb-3">${songNotes}</p>
               <div class="form-group col-md-6 editSpace" style="display: none">
                 <label for="editNotes">Notes:</label>
