@@ -159,13 +159,11 @@ app.post('/api/moods/:moodId/songs', function (req, res){
       url: req.body.url,
       notes: req.body.notes
   });
-  console.log(song);
 
-  let moodId = req.params.moodId; 
+  let moodId = req.params.moodId;
   db.Mood.findById(moodId, function (err, foundMood) {
-    console.log(foundMood);
-    if (err) {console.log('error', err)}; 
-    foundMood.songs.push(song); 
+    if (err) {console.log('error', err)};
+    foundMood.songs.push(song);
     foundMood.save();
     res.json(foundMood);
   })
@@ -199,7 +197,6 @@ app.delete('/api/moods/:id', function(req, res) {
 app.delete('/api/moods/:moodId/songs/:id', function (req, res){
   var moodId = req.params.moodId;
   var songId = req.params.id;
-  console.log(req.params);
 
   db.Mood.findOne({_id:moodId}, function (err, foundMood){
     if(err){console.log(error, err);}

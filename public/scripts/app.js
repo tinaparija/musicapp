@@ -37,21 +37,20 @@ $(document).ready(function(){
     });
   });
 
-  $(document).on('click','#addSongButton', function(e) {
+  $(document).on('click', '.addSongButton', function(e) {
     $('#addSongModal').modal(); //triggers modal to add a new song
     console.log("Song modal open!")
     let moodId = $(this).data('mood-id');
-  //  console.log(moodId);
-    $('form').on('submit', function(e) {
-      e.preventDefault();
-      $.ajax({
-        method: 'POST',
-        url: '/api/moods/'+moodId+'/songs',
-        data: $('form').serialize(),
-        success: onPostSongSuccess,
-        error: onError
+      $('form').on('submit', function(e) {
+        e.preventDefault();
+        $.ajax({
+          method: 'POST',
+          url: ('/api/moods/'+moodId+'/songs'),
+          data: $('form').serialize(),
+          success: onPostSongSuccess,
+          error: onError
+        });
       });
-    });
   });
 
   // edit notes on a song
@@ -96,7 +95,7 @@ $(document).ready(function(){
   });
 
   //delete a mood (add delete mood button)
-  $(document).on('click', '#deleteMoodButton', function(e) {
+  $(document).on('click', '.deleteMood', function(e) {
     console.log("Delete button clicked");
     // let moodId =
     //$.ajax({
@@ -120,48 +119,52 @@ $(document).ready(function(){
   }
 
   function displayAccordionContent(mood) {
-      $("#songsAccordion").empty();
-      let songsList = mood.songs;
-        for (let i = 0; i < songsList.length; i++) {
-          let songId = songsList[i]._id;
-          let songName = songsList[i].name;
-          let songArtist = songsList[i].artist;
-          let songUrl = songsList[i].url;
-          let songNotes = songsList[i].notes;
-          let accordionHtml = `<div class="item" data-song-id=${songId}>
-            <a data-toggle="collapse" data-parent="#songsAccordion" href="#songAccordion${i+1}" aria-expanded="false" aria-controls="songAccordion${i+1}">
-              "${songName}" by ${songArtist}
-            </a>
-            <div id="songAccordion${i+1}" class="collapse" role="tabpanel">
-              <div><iframe width="50%" height="300" scrolling="no" frameborder="no" src="${songUrl}&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe></div>
-              <p class="mb-3">${songNotes}</p>
-              <div class="form-group col-md-6 editSpace" style="display: none">
-                <label for="editNotes">Notes:</label>
-                <textarea class="form-control" id="editNotes" rows="3" name="notes"></textarea>
-                  <button type="button" class="btn btn-light editSave">Save</button>
-              </div>
-              <button type="button" data-song-id=${songId} data-mood-id=${mood._id} class="btn btn-light edit"><i class="far fa-edit"></i></button>
-              <button type="button" data-song-id=${songId} data-mood-id=${mood._id} class="btn btn-dark delete"><i class="fas fa-times"></i></button>
-            </div>
-          </div>`
-          $("#songsAccordion").append(accordionHtml);
-        };
+    $("#songsAccordion").empty();
+    let songsList = mood.songs;
+    for (let i = 0; i < songsList.length; i++) {
+      let songId = songsList[i]._id;
+      let songName = songsList[i].name;
+      let songArtist = songsList[i].artist;
+      let songUrl = songsList[i].url;
+      let songNotes = songsList[i].notes;
+      let accordionHtml = `<div class="item" data-song-id=${songId}>
+        <a data-toggle="collapse" data-parent="#songsAccordion" href="#songAccordion${i+1}" aria-expanded="false" aria-controls="songAccordion${i+1}">
+          "${songName}" by ${songArtist}
+        </a>
+        <div id="songAccordion${i+1}" class="collapse" role="tabpanel">
+          <div><iframe width="50%" height="300" scrolling="no" frameborder="no" src="${songUrl}&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe></div>
+          <p class="mb-3">${songNotes}</p>
+          <div class="form-group col-md-6 editSpace" style="display: none">
+            <label for="editNotes">Notes:</label>
+            <textarea class="form-control" id="editNotes" rows="3" name="notes"></textarea>
+              <button type="button" class="btn btn-light editSave">Save</button>
+          </div>
+          <button type="button" data-song-id=${songId} data-mood-id=${mood._id} class="btn btn-light edit"><i class="far fa-edit"></i></button>
+          <button type="button" data-song-id=${songId} data-mood-id=${mood._id} class="btn btn-dark delete"><i class="fas fa-times"></i></button>
+        </div>
+      </div>`
+      console.log(songsList);
+      console.log(songName);
+      $("#songsAccordion").append(accordionHtml);
+    };
   };
 
   function displayMood(mood) {
     let $currentMood = $(".current-mood");
     $currentMood.empty();
+    let deleteMoodButton = `<button type="button" data-mood-id=${mood._id} class="btn btn-dark deleteMood"><i class="fas fa-times"></i></button>`
     let titleContent = `<div class="row" data-mood-id=${mood._id}>
         <div class="col-md-6 mood-title"><h1>${mood.name}</h1></div>
         <div class="col-md-6 mood-title"><p>${mood.description}</p></div>
       </div>
       <div class="col-md-6 mood-title"><h3>SONGS</h3></div>`
     let accordionDiv = `<div class="col-md-12" id="songsAccordion" data-children=".item"></div>`
-    let addSongButton = `<div class="col-md-12"><button type="button" data-mood-id=${mood._id} id="addSongButton"class="btn btn-light"><i class="fas fa-plus"></i></button></div>`
+    let addSongButton = `<div class="col-md-12"><button type="button" data-mood-id=${mood._id} class="btn btn-light addSongButton"><i class="fas fa-plus"></i></button></div>`
       $currentMood.append(titleContent);
       $currentMood.append(accordionDiv);
       displayAccordionContent(mood);
       $currentMood.append(addSongButton);
+      $currentMood.append(deleteMoodButton);
   };
 
   function onGetSuccess(moodsData) {
