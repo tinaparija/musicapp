@@ -159,7 +159,8 @@ app.post('/api/moods/:moodId/songs', function (req, res){
     var song = new db.Song({
       name: req.body.name,
       artist: req.body.artist,
-      url: req.body.url
+      url: req.body.url,
+      notes: req.body.notes
     });
 
     mood.songs.push(song);
