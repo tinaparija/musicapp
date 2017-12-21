@@ -56,7 +56,7 @@ app.get('/api', function (req, res) {
         {
           method: "POST",
           path: "/api/moods/:moodId/songs",
-          description: "adds moods to existing set"
+          description: "adds songs to existing mood"
         },
         {
           method: "PUT",
@@ -131,6 +131,7 @@ app.get('/api/moods/:id/songs', function (req, res) {
     });
 });
 
+
 // adds moods to existing set
 app.post('/api/moods', function (req, res){
   var newMood = db.Mood({
@@ -158,7 +159,8 @@ app.post('/api/moods/:moodId/songs', function (req, res){
     var song = new db.Song({
       name: req.body.name,
       artist: req.body.artist,
-      url: req.body.url
+      url: req.body.url,
+      notes: req.body.notes
     });
 
     mood.songs.push(song);
@@ -166,6 +168,19 @@ app.post('/api/moods/:moodId/songs', function (req, res){
       if (err) {console.log('error', err)}
       console.log('mood with new song saved:', savedMood);
       res.json(song);
+    });
+  });
+});
+
+app.put('/api/moods/:moodId/songs/:id', function(req, res) {
+  let moodId = req.params.moodId;
+  let songId = req.params.id;
+  db.Mood.findOne({_id: moodId}, function(err, foundMood) {
+    let foundSong = foundMood.songs.id(songId);
+    foundSong.notes = req.body.notes;
+    foundMood.save(function(err, saved) {
+      if (err) {console.log('error ', err)}
+      res.json(saved);
     });
   });
 });
@@ -187,13 +202,13 @@ app.delete('/api/moods/:moodId/songs/:id', function (req, res){
   var songId = req.params.id;
   console.log(req.params);
 
-  db.Album.findOne({_id:moodId}, function (err, foundMood){
+  db.Mood.findOne({_id:moodId}, function (err, foundMood){
     if(err){console.log(error, err);}
 
     var foundSong = foundMood.songs.id(songId);
     foundSong.remove();
 
-    foundAlbum.save(function(err, saved){
+    foundMood.save(function(err, saved){
       if(err) {console.log('error', err);}
       res.json(saved);
     });

@@ -23,7 +23,19 @@
         <h1>Mood Music</h1>
       </div>
     </div>
-    <!-- add accordion for instructions? -->
+    <div class="row justify-content-center">
+    <!-- accordion for instructions -->
+      <div id="instructionsAccordion" data-children=".item">
+        <div class="item">
+          <a data-toggle="collapse" data-parent="#instructionsAccordion" href="#Accordion1" aria-expanded="false" aria-controls="Accordion1">
+            Instructions</button>
+          </a>
+          <div id="Accordion1" class="collapse" role="tabpanel">
+            <p class="mb-3">How to use this app? What to do?</p>
+          </div>
+        </div>
+      </div>
+    </div>
     <hr>
     <!-- moods section-->
     <div class="row justify-content-center mood-selection">
@@ -116,7 +128,7 @@
     <!-- footer section -->
     <hr>
     <footer class="row justify-content-center">
-      <div class="col-md-8">Footer</div>
+      <p>&copy; 2017     Created by Tina & Eva-Liisa @ GA</p>
     </footer>
 
   </div>
