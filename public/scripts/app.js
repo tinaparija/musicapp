@@ -56,18 +56,23 @@ $(document).ready(function(){
   $(document).on('click', '.edit', function(e) {
     e.preventDefault();
     console.log("edit button clicked");
+    $(".editSpace").show();
     let songId = $(this).data('song-id');
     let moodId = $(this).data('mood-id');
-    let reqUrl = ('/api/moods/' + moodId + '/songs/' + songId );
-    $.ajax({
-      method: "PUT", 
-      url: reqUrl, 
-      success: function(data) {
-        displayMood(data);
-      },
-      error: onError
-    })
+    let reqUrl = ('/api/moods/' + moodId + '/songs/' + songId); 
 
+    $(document).on('click','.editSave', function(e){
+      let editVal = $("textarea#editNotes").html();
+      console.log("here is the text", editVal);
+      $.ajax({
+        method: "PUT", 
+        url: reqUrl, 
+        success: function(data) {
+          displayMood(data);
+        },
+        error: onError
+      });
+    });
   });
 
   //delete a song on click of X button
@@ -116,12 +121,12 @@ $(document).ready(function(){
               <div><iframe width="50%" height="300" scrolling="no" frameborder="no" src="${songUrl}&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe></div>
 
               <p class="mb-3">${songNotes}</p>
-              <div class="form-group col-md-6" style="display: none">
+              <div class="form-group col-md-6 editSpace" style="display: none">
                 <label for="editNotes">Notes:</label>
-                <textarea class="form-control" id="editNotes" rows="3"></textarea>
-                  <button type="button" class="btn btn-light">Save</button>
+                <textarea class="form-control" id="editNotes" rows="3" name="notes"></textarea>
+                  <button type="button" class="btn btn-light editSave">Save</button>
               </div>
-              <button type="button" class="btn btn-light edit"><i class="far fa-edit"></i></button>
+              <button type="button" data-song-id=${songId} data-mood-id=${mood._id} class="btn btn-light edit"><i class="far fa-edit"></i></button>
               <button type="button" data-song-id=${songId} data-mood-id=${mood._id} class="btn btn-dark delete"><i class="fas fa-times"></i></button>
             </div>
           </div>`
