@@ -1,0 +1,74 @@
+.mood-music {
+  padding: 30px 0;
+}
+
+.mood-music h1 {
+  color: gray;
+}
+
+.mood {
+  background-color: lightblue;
+  border-radius: 10px;
+  text-align: center;
+  margin-right: 20px;
+  margin-top: 20px;
+  color: #ffffff;
+}
+
+#instructionsAccordion {
+  text-align: center;
+  color: gray;
+}
+
+#instructionsAccordion a {
+  color: lightgray;
+}
+
+.current-mood {
+  min-height: 300px;
+}
+
+.add-mood {
+  border-radius: 10px;
+  text-align: center;
+  margin-right: 20px;
+  margin-top: 20px;
+  color: gray;
+}
+
+.add-mood:hover {
+  background-color: lightgray;
+}
+
+.add-mood {
+  border: 1px solid lightgray;
+  background-color: white;
+}
+
+.mood:hover {
+  opacity: 0.7;
+}
+
+#colorPicker {
+  height: 40px;
+}
+
+.current-mood {
+  border-radius: 10px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding: 30px;
+}
+
+.item {
+  margin-top: 10px;
+}
+
+button {
+  margin-top: 10px;
+}
+
+footer {
+  height: 100px;
+  color: gray;
+}
