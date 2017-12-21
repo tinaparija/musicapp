@@ -38,23 +38,43 @@ $(document).ready(function(){
   $(document).on('click','#addSongButton', function(e) {
     $('#addSongModal').modal(); //triggers modal to add a new song
     console.log("Song modal open!")
-    // $('form').on('submit', function(e) {
-    //   console.log("button clicked");
-    //   $.ajax({
-    //     method: 'POST',
-    //     url: '/api/moods/:id/songs',
-    //     data: $('form').serialize(),
-    //     success: onPostSongSuccess,
-    //     error: onError
-    // });
-  // });
+    $('form').on('submit', function(e) {
+      e.preventDefault();
+      let moodId = $(this).data('mood-id');
+      $.ajax({
+        method: 'POST',
+        url: '/api/moods/'+moodId+'/songs',
+        data: $('form').serialize(),
+        success: onPostSongSuccess,
+        error: onError
+    });
+  });
+  });
+
+  // edit notes on a song 
+  $(document).on('click', '.edit', function(e) {
+    e.preventDefault();
+    console.log("edit button clicked");
+    let songId = $(this).data('song-id');
+    let moodId = $(this).data('mood-id');
+    let reqUrl = ('/api/moods/' + moodId + '/songs/' + songId );
+    $.ajax({
+      method: "PUT", 
+      url: reqUrl, 
+      data: 
+      success: function(data) {
+        displayMood(data);
+      },
+      error: onError
+    })
+
   });
 
   //delete a song on click of X button
   $(document).on('click', '.delete', function(e) {
     e.preventDefault();
-    var songId = $(this).data('song-id');
-    var moodId = $(this).data('mood-id');
+    let songId = $(this).data('song-id');
+    let moodId = $(this).data('mood-id');
     let reqUrl = ('/api/moods/' + moodId + '/songs/' + songId );
     $.ajax({
       method: 'DELETE',
@@ -65,6 +85,8 @@ $(document).ready(function(){
       error: onError
     });
   });
+
+
 
   function renderMoodButton(mood) {
     let moodSelections = `<div class="col-2 mood" data-id=${mood._id} style="background-color:${mood.color}">${mood.name}</div>`
@@ -99,7 +121,7 @@ $(document).ready(function(){
                 <textarea class="form-control" id="editNotes" rows="3"></textarea>
                   <button type="button" class="btn btn-light">Save</button>
               </div>
-              <button type="button" class="btn btn-light edit"><i class="far fa-edit"></i></button>
+              <button type="button" data-song-id=${songId} data-mood-id=${mood._id} class="btn btn-light edit"><i class="far fa-edit"></i></button>
               <button type="button" data-song-id=${songId} data-mood-id=${mood._id} class="btn btn-dark delete"><i class="fas fa-times"></i></button>
             </div>
           </div>`
@@ -138,6 +160,10 @@ $(document).ready(function(){
   function onPostOneSuccess(postedSong) {
     renderMoodButton(postedSong);
     onGetOneSuccess(postedSong);
+  };
+
+  function onPostSongSuccess(postedSong) {
+    console.log(postedSong);
   };
 
   function onError(err) {
