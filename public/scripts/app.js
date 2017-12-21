@@ -38,9 +38,10 @@ $(document).ready(function(){
   $(document).on('click','#addSongButton', function(e) {
     $('#addSongModal').modal(); //triggers modal to add a new song
     console.log("Song modal open!")
+    let moodId = $(this).data('mood-id');
+    console.log(moodId);
     $('form').on('submit', function(e) {
       e.preventDefault();
-      let moodId = $(this).data('mood-id');
       $.ajax({
         method: 'POST',
         url: '/api/moods/'+moodId+'/songs',
@@ -120,7 +121,7 @@ $(document).ready(function(){
                 <textarea class="form-control" id="editNotes" rows="3"></textarea>
                   <button type="button" class="btn btn-light">Save</button>
               </div>
-              <button type="button" data-song-id=${songId} data-mood-id=${mood._id} class="btn btn-light edit"><i class="far fa-edit"></i></button>
+              <button type="button" class="btn btn-light edit"><i class="far fa-edit"></i></button>
               <button type="button" data-song-id=${songId} data-mood-id=${mood._id} class="btn btn-dark delete"><i class="fas fa-times"></i></button>
             </div>
           </div>`
@@ -137,7 +138,7 @@ $(document).ready(function(){
       </div>
       <div class="col-md-6 mood-title"><h3>SONGS</h3></div>`
     let accordionDiv = `<div class="col-md-12" id="songsAccordion" data-children=".item"></div>`
-    let addSongButton = `<div class="col-md-12"><button type="button" id="addSongButton"class="btn btn-light"><i class="fas fa-plus"></i></button></div>`
+    let addSongButton = `<div class="col-md-12"><button type="button" data-mood-id=${mood._id} id="addSongButton"class="btn btn-light"><i class="fas fa-plus"></i></button></div>`
       $currentMood.append(titleContent);
       $currentMood.append(accordionDiv);
       displayAccordionContent(mood);
@@ -163,6 +164,7 @@ $(document).ready(function(){
 
   function onPostSongSuccess(postedSong) {
     console.log(postedSong);
+    displayAccordionContent(postedSong);
   };
 
   function onError(err) {
