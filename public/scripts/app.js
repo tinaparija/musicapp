@@ -68,6 +68,7 @@ $(document).ready(function(){
       $.ajax({
         method: "PUT",
         url: reqUrl,
+        data: {notes: editVal},
         success: function(data) {
           displayMood(data);
         },
