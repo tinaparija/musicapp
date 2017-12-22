@@ -153,7 +153,6 @@ app.post('/api/moods', function (req, res){
 // adds songs to a mood
 
 app.post('/api/moods/:moodId/songs', function (req, res){
-  console.log(req);
   let song = new db.Song({
       name: req.body.name,
       artist: req.body.artist,
@@ -171,14 +170,19 @@ app.post('/api/moods/:moodId/songs', function (req, res){
 });
 
 app.put('/api/moods/:moodId/songs/:id', function(req, res) {
+  console.log(req);
   let moodId = req.params.moodId;
   let songId = req.params.id;
+  console.log(moodId);
+  console.log(songId);
   db.Mood.findOne({_id: moodId}, function(err, foundMood) {
     let foundSong = foundMood.songs.id(songId);
+    console.log(foundSong);
     foundSong.notes = req.body.notes;
     foundMood.save(function(err, saved) {
       if (err) {console.log('error ', err)}
       res.json(saved);
+      console.log('saved:', saved)
     });
   });
 });
