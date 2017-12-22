@@ -42,7 +42,6 @@ $(document).ready(function(){
     console.log("Song modal open!")
     let moodId = $(this).data('mood-id');
       $('#addSongForm').on('submit', function(e) {
-        console.log($(this).serialize());
         e.preventDefault();
         $.ajax({
           method: 'POST',
@@ -64,15 +63,17 @@ $(document).ready(function(){
     let reqUrl = ('/api/moods/' + moodId + '/songs/' + songId);
 
     $(document).on('click','.editSave', function(e){
+      e.preventDefault();
       console.log('save button clicked');
-      let editVal = $("textarea.editNotes").val();
-      console.log("here is the text", editVal);
+      let editVal = $(`textarea.${songId}`).val();
       $.ajax({
         method: "PUT",
         url: reqUrl,
         data: {notes: editVal},
         success: function(data) {
-          displayMood(data);
+          console.log(data);
+          //console.log(data.songs);
+          displayAccordionContent(data);
         },
         error: onError
       });
@@ -122,8 +123,10 @@ $(document).ready(function(){
   function displayAccordionContent(mood) {
     $("#songsAccordion").empty();
     let songsList = mood.songs;
+    console.log(songsList);
     for (let i = 0; i < songsList.length; i++) {
       let songId = songsList[i]._id;
+      console.log(songId);
       let songName = songsList[i].name;
       let songArtist = songsList[i].artist;
       let songUrl = songsList[i].url;
@@ -137,15 +140,13 @@ $(document).ready(function(){
           <p class="mb-3">${songNotes}</p>
           <div class="form-group col-md-6 editSpace" style="display: none">
             <label for="editNotes">Notes:</label>
-            <textarea class="form-control editNotes" rows="3" name="notes"></textarea>
+            <textarea class="form-control editNotes ${songId}" rows="3" name="notes"></textarea>
               <button type="button" class="btn btn-light editSave">Save</button>
           </div>
           <button type="button" data-song-id=${songId} data-mood-id=${mood._id} class="btn btn-light edit"><i class="far fa-edit"></i></button>
           <button type="button" data-song-id=${songId} data-mood-id=${mood._id} class="btn btn-dark delete"><i class="fas fa-times"></i></button>
         </div>
       </div>`
-      console.log(songsList);
-      console.log(songName);
       $("#songsAccordion").append(accordionHtml);
     };
   };
@@ -169,7 +170,6 @@ $(document).ready(function(){
   };
 
   function onGetSuccess(moodsData) {
-    console.log(moodsData);
     moodsData.forEach(function(mood) {
       renderMoodButton(mood);
     });
@@ -186,7 +186,6 @@ $(document).ready(function(){
   };
 
   function onPostSongSuccess(postedSong) {
-    console.log(postedSong);
     displayAccordionContent(postedSong);
   };
 

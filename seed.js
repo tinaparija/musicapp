@@ -3,36 +3,39 @@
 
 var db = require('./models');
 
-var moods_list = 
+var moods_list =
 [{
 	name: "Funky",
-	color: "#FF5733", 
-	description: "Songs that make you want to get up and groove.", 
-	imageURL: "https://ak4.picdn.net/shutterstock/videos/6062744/thumb/1.jpg", 
-	imageSpeed: 20, 
+	color: "#FF5733",
+	description: "Songs that make you want to get up and groove.",
+	imageURL: "https://ak4.picdn.net/shutterstock/videos/6062744/thumb/1.jpg",
+	imageSpeed: 20,
 	songs:[
 		  	{
 		  		name: "Breakdance Lesson",
 		  		artist: "Kaytranada",
-		  		url: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/252290297"
+		  		url: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/252290297",
+					notes: ""
 		  	},
 		  	{
 		  		name: "Love Strong",
 		  		artist: "Moon Boots",
-		  		url: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/92187982"
+		  		url: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/92187982",
+					notes: ""
 		  	},
 		  	{
 		  		name: "Stayin' Alive",
 		  		artist: "The Bee Gees",
-		  		url: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/140102039"
+		  		url: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/140102039",
+					notes: ""
 		  	}]
-}, 
+},
 {
 	name: "Depressed",
-	color: "#000000", 
-	description: "Songs to cry to.", 
-	imageURL: "https://ak4.picdn.net/shutterstock/videos/6062744/thumb/1.jpg", 
-	imageSpeed: 20, 
+	color: "#000000",
+	description: "Songs to cry to.",
+	imageURL: "https://ak4.picdn.net/shutterstock/videos/6062744/thumb/1.jpg",
+	imageSpeed: 20,
 	songs: [
 		  	{
 		  		name: "Fool Of Me",
@@ -47,15 +50,15 @@ var moods_list =
 		  	{
 		  		name: "Armchairs",
 		  		artist: "Andrew Bird",
-		  		url: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/19536882"		
+		  		url: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/19536882"
 		  	}]
-}, 
+},
 {
 	name: "Angry",
-	color: "#DB0000", 
-	description: "Songs that make you want to scream.", 
-	imageURL: "https://ak4.picdn.net/shutterstock/videos/6062744/thumb/1.jpg", 
-	imageSpeed: 20, 
+	color: "#DB0000",
+	description: "Songs that make you want to scream.",
+	imageURL: "https://ak4.picdn.net/shutterstock/videos/6062744/thumb/1.jpg",
+	imageSpeed: 20,
 	songs: [
 		  	{
 		  		name: "One Step Closer",
@@ -72,13 +75,13 @@ var moods_list =
 		  		artist: "Taking Back Sunday",
 		  		url: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/220647601"
 		  	}]
-}, 
+},
 {
 	name: "Calm",
-	color: "#6B67D8", 
-	description: "Songs to help you chill out.", 
-	imageURL: "https://ak4.picdn.net/shutterstock/videos/6062744/thumb/1.jpg", 
-	imageSpeed: 20, 
+	color: "#6B67D8",
+	description: "Songs to help you chill out.",
+	imageURL: "https://ak4.picdn.net/shutterstock/videos/6062744/thumb/1.jpg",
+	imageSpeed: 20,
 	songs: [
 		  	{
 		  		name: "Clouds",
@@ -101,15 +104,11 @@ db.Mood.remove({}, function(err, moods){
 	db.Song.remove({}, function (err, songs) {
 		moods_list.forEach(function(moods) {
 			db.Song.create(moods.songs, function (err, savedSongs) {
-				moods.songs = savedSongs; 
+				moods.songs = savedSongs;
 				db.Mood.create(moods, function (err, savedList){
 					console.log("saved list", savedList.name)
 				});
-			}); 
-		}); 
-	}); 
-}); 
-
-
-
-
+			});
+		});
+	});
+});
