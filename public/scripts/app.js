@@ -62,7 +62,7 @@ $(document).ready(function(){
     let moodId = $(this).data('mood-id');
     let reqUrl = ('/api/moods/' + moodId + '/songs/' + songId);
 
-    $(document).on('click','.editSave', function(e){
+    $('.editSave').on('click', function(e){
       e.preventDefault();
       console.log('save button clicked');
       let editVal = $(`textarea.${songId}`).val();
@@ -72,7 +72,7 @@ $(document).ready(function(){
         data: {notes: editVal},
         success: function(data) {
           console.log(data);
-          //console.log(data.songs);
+          console.log(data.songs);
           displayAccordionContent(data);
         },
         error: onError
