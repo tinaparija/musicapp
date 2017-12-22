@@ -56,7 +56,6 @@ $(document).ready(function(){
   // edit notes on a song
   $(document).on('click', '.edit', function(e) {
     e.preventDefault();
-    console.log("edit button clicked");
     $(".editSpace").show();
     let songId = $(this).data('song-id');
     let moodId = $(this).data('mood-id');
@@ -64,15 +63,13 @@ $(document).ready(function(){
 
     $('.editSave').on('click', function(e){
       e.preventDefault();
-      console.log('save button clicked');
       let editVal = $(`textarea.${songId}`).val();
       $.ajax({
         method: "PUT",
         url: reqUrl,
         data: {notes: editVal},
         success: function(data) {
-          console.log(data);
-          console.log(data.songs);
+
           displayAccordionContent(data);
         },
         error: onError
