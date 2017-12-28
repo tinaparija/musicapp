@@ -65,7 +65,7 @@ app.get('/api', function (req, res) {
         },
         {
           method: "DELETE",
-          path: "/api/moods/:moodId",
+          path: "/api/moods/:id",
           description: "deletes a single mood"
         },
         {

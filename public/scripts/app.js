@@ -43,6 +43,8 @@ $(document).ready(function(){
     let moodId = $(this).data('mood-id');
       $('#addSongForm').on('submit', function(e) {
         e.preventDefault();
+        this.reset();
+        $('#addSongModal').modal('hide');
         $.ajax({
           method: 'POST',
           url: ('/api/moods/'+moodId+'/songs'),
@@ -96,16 +98,20 @@ $(document).ready(function(){
     });
   });
 
-  //delete a mood (add delete mood button)
+  // delete a mood 
   $(document).on('click', '.deleteMood', function(e) {
     console.log("Delete button clicked");
-    // let moodId =
-    //$.ajax({
-    // method: 'DELETE',
-    // url: ()'/api/moods/' + moodId ),
-    // success: onDeleteSuccess,
-    //error: on Error
-    // });
+    let moodId = $(this).data('mood-id');
+    $.ajax({
+    method: 'DELETE',
+    url: ('/api/moods/' + moodId),
+    success: function () {
+      console.log("mood deleted");
+      $('.current-mood').remove();
+      location.reload();
+    },
+    error: onError 
+    });
   });
 
 
@@ -187,6 +193,12 @@ $(document).ready(function(){
 
   function onPostSongSuccess(postedSong) {
     displayAccordionContent(postedSong);
+    ('#addSongModal').hide();
+  };
+
+   function onDeleteSuccess(postedSong) {
+    displayAccordionContent(postedSong);
+
   };
 
   function onError(err) {
