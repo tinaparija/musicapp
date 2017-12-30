@@ -23,7 +23,6 @@ a {
   border-color: gray;
 }
 
-
 #instructionsAccordion {
   text-align: center;
   color: gray;
@@ -73,8 +72,10 @@ a {
   margin-top: 10px;
 }
 
-button {
-  margin-top: 10px;
+.btn {
+  margin-top: 20px;
+  padding: 0 50px;
+  border-radius: 10px;
 }
 
 footer {

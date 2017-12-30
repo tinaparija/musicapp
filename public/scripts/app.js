@@ -69,18 +69,13 @@ $(document).ready(function(){
         url: reqUrl,
         data: {notes: editVal},
         success: function(data) {
-          console.log(data);
           $(".editSpace").hide();
           let songs = data.songs;
-          console.log(songs)
-          console.log(songId)
           for(let i = 0; i < songs.length; i++) {
             if(songs[i]._id == songId) {
               $(`p.${songId}`).html(songs[i].notes);
             }
           }
-          //$(".mb-3").html(data.notes);
-          //displayAccordionContent(data);
         },
         error: onError
       });
@@ -130,7 +125,6 @@ $(document).ready(function(){
   function displayAccordionContent(mood) {
     $("#songsAccordion").empty();
     let songsList = mood.songs;
-    console.log(songsList);
     for (let i = 0; i < songsList.length; i++) {
       let songId = songsList[i]._id;
       let songName = songsList[i].name;
