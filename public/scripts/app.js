@@ -69,8 +69,18 @@ $(document).ready(function(){
         url: reqUrl,
         data: {notes: editVal},
         success: function(data) {
-
-          displayAccordionContent(data);
+          console.log(data);
+          $(".editSpace").hide();
+          let songs = data.songs;
+          console.log(songs)
+          console.log(songId)
+          for(let i = 0; i < songs.length; i++) {
+            if(songs[i]._id == songId) {
+              $(`p.${songId}`).html(songs[i].notes);
+            }
+          }
+          //$(".mb-3").html(data.notes);
+          //displayAccordionContent(data);
         },
         error: onError
       });
@@ -123,7 +133,6 @@ $(document).ready(function(){
     console.log(songsList);
     for (let i = 0; i < songsList.length; i++) {
       let songId = songsList[i]._id;
-      console.log(songId);
       let songName = songsList[i].name;
       let songArtist = songsList[i].artist;
       let songUrl = songsList[i].url;
@@ -134,7 +143,7 @@ $(document).ready(function(){
         </a>
         <div id="songAccordion${i+1}" class="collapse" role="tabpanel">
           <div><iframe width="50%" height="300" scrolling="no" frameborder="no" src="${songUrl}&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe></div>
-          <p class="mb-3">${songNotes}</p>
+          <p class="mb-3 ${songId}">${songNotes}</p>
           <div class="form-group col-md-6 editSpace" style="display: none">
             <label for="editNotes">Notes:</label>
             <textarea class="form-control editNotes ${songId}" rows="3" name="notes"></textarea>
