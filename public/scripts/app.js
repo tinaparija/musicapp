@@ -87,33 +87,37 @@ $(document).ready(function(){
   //delete a song on click of X button
   $(document).on('click', '.delete', function(e) {
     e.preventDefault();
-    confirm("Are you sure you want to delete this song?");
-    let songId = $(this).data('song-id');
-    let moodId = $(this).data('mood-id');
-    let reqUrl = ('/api/moods/' + moodId + '/songs/' + songId );
-    $.ajax({
-      method: 'DELETE',
-      url: reqUrl,
-      success: function(data) {
-        displayMood(data);
-      },
-      error: onError
-    });
+    let delSong = confirm("Are you sure you want to delete this song?");
+    if (delSong) {
+      let songId = $(this).data('song-id');
+      let moodId = $(this).data('mood-id');
+      let reqUrl = ('/api/moods/' + moodId + '/songs/' + songId );
+      $.ajax({
+        method: 'DELETE',
+        url: reqUrl,
+        success: function(data) {
+          displayMood(data);
+        },
+        error: onError
+      });
+    };
   });
 
   // delete a mood
   $(document).on('click', '.deleteMood', function(e) {
-    confirm("Are you sure you want to delete this mood?");
+    let delMood = confirm("Are you sure you want to delete this mood?");
+    if (delMood) {
     let moodId = $(this).data('mood-id');
-    $.ajax({
-    method: 'DELETE',
-    url: ('/api/moods/' + moodId),
-    success: function () {
-      $('.current-mood').remove();
-      location.reload();
-    },
-    error: onError
-    });
+      $.ajax({
+      method: 'DELETE',
+      url: ('/api/moods/' + moodId),
+      success: function () {
+        $('.current-mood').remove();
+        location.reload();
+      },
+      error: onError
+      });
+    };
   });
 
 
