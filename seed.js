@@ -11,24 +11,25 @@ var moods_list =
 	imageURL: "https://ak4.picdn.net/shutterstock/videos/6062744/thumb/1.jpg",
 	imageSpeed: 20,
 	songs:[
-		  	{
-		  		name: "Breakdance Lesson",
-		  		artist: "Kaytranada",
-		  		url: '<iframe width="100%" height="300" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/252290297&amp;color=%23ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true&amp;visual=true"></iframe>',
-					notes: ""
-		  	},
-		  	{
-		  		name: "Love Strong",
-		  		artist: "Moon Boots",
-		  		url: '<iframe width="100%" height="300" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/92187982&amp;color=%23ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true&amp;visual=true"></iframe>',
-					notes: ""
-		  	},
-		  	{
-		  		name: "Stayin' Alive",
-		  		artist: "The Bee Gees",
-		  		url: '<iframe width="100%" height="300" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/140102039&amp;color=%23ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true&amp;visual=true"></iframe>',
-					notes: ""
-		  	}]
+  	{
+  		name: "Breakdance Lesson",
+  		artist: "Kaytranada",
+  		url: '<iframe width="100%" height="300" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/252290297&amp;color=%23ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true&amp;visual=true"></iframe>',
+			notes: ""
+  	},
+  	{
+  		name: "Love Strong",
+  		artist: "Moon Boots",
+  		url: '<iframe width="100%" height="300" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/92187982&amp;color=%23ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true&amp;visual=true"></iframe>',
+			notes: ""
+  	},
+  	{
+  		name: "Stayin' Alive",
+  		artist: "The Bee Gees",
+  		url: '<iframe width="100%" height="300" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/140102039&amp;color=%23ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true&amp;visual=true"></iframe>',
+			notes: ""
+  	}
+	]
 },
 {
 	name: "Depressed",

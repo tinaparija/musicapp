@@ -4,7 +4,9 @@ Ever get emotional and immediately need a soundtrack to your life? Mood Music cu
 
 ### Technologies Used 
 
-This app was built primarily using javascript and love. The frontend was designed using bootstrap and javascript, while the backend utilized MongoDB and Mongoose server logic. 
+This app was built primarily using full-stack JavaScript and love. 
+
+The front-end was built with JavaScript and JQuery and styled using Bootstrap, while the back-end was built in Node.js and utilized Mongoose to communicate with a MongoDB database. 
 
 ### Existing Features 
 
@@ -12,7 +14,8 @@ This application allows users to receive a curated list of songs for a given moo
 
 ### Planned Features 
 
+<!-- Use verbs e.g. "conduct user research to make intentional improvements to UI" -->
 * User accounts 
-* User Research ---> Style Updates 
+* User Research ---> Style Updates
 * Uploading Downloaded Music 
 * Integration with Spotify, Pandora, Itunes, etc. 

@@ -1,74 +1,65 @@
-console.log("Sanity Check: JS is working!");
-
 $(document).ready(function(){
-  console.log("Document loaded");
-
   $.ajax({
     method: 'GET',
     url: '/api/moods',
-    success: onGetSuccess,
+    success: onGetMoodsSuccess,
     error: onError
   });
 
+  $(document).on('click', '.mood', function displayClickedMood (e) {
+    $('.mood').removeClass('active');
+    $(this).addClass('active');
+    $.ajax({
+      method: 'GET',
+      url: '/api/moods/'+$(this).attr('data-id'),
+      success: onGetMoodSuccess,
+      error: onError
+    });
+  });
 
-  $(document).on('click', 'div.mood', function(e) { //displays the content of one mood the user clicked on
-      $(".mood").removeClass('active');
-      $(this).addClass('active');
+  $('#addMoodButton').on('click', function openAddNewMoodModal (e) {
+    $('#addMoodModal').modal();
+    $('#addMood').on('submit', function(e) {
+      let formData = $(this).serialize();
       $.ajax({
-        method: 'GET',
-        url: '/api/moods/'+$(this).attr('data-id'),
-        success: onGetOneSuccess,
+        method: 'POST',
+        url: '/api/moods',
+        data: formData,
+        success: onPostMoodSuccess,
         error: onError
       });
     });
+  });
 
-  // add new mood
-  $('#addMoodButton').on('click', function(e) {
-    $('#addMoodModal').modal(); //triggers modal to add new mood
-      $('#addMood').on('submit', function(e) {
-        let formData = $(this).serialize();
-        $.ajax({
-          method: 'POST',
-          url: '/api/moods',
-          data: formData,
-          success: onPostOneSuccess,
-          error: onError
+  $(document).on('click', '.addSongButton', function openAddNewSongModal (e) {
+    $('#addSongModal').modal();
+    let moodId = $(this).data('mood-id');
+    $('#addSongForm').on('submit', function(e) {
+      e.preventDefault();
+      $('#addSongModal').modal('hide');
+      $.ajax({
+        method: 'POST',
+        url: '/api/moods/'+moodId+'/songs',
+        data: $('#addSongForm').serialize(),
+        success: onPostSongSuccess,
+        error: onError
       });
+      this.reset();
     });
   });
 
-  $(document).on('click', '.addSongButton', function(e) {
-    $('#addSongModal').modal(); //triggers modal to add a new song
-    console.log("Song modal open!")
-    let moodId = $(this).data('mood-id');
-      $('#addSongForm').on('submit', function(e) {
-        e.preventDefault();
-        $('#addSongModal').modal('hide');
-        $.ajax({
-          method: 'POST',
-          url: ('/api/moods/'+moodId+'/songs'),
-          data: $('#addSongForm').serialize(),
-          success: onPostSongSuccess,
-          error: onError
-        });
-        this.reset();
-      });
-  });
-
-  // edit notes on a song
-  $(document).on('click', '.edit', function(e) {
+  $(document).on('click', '.edit', function allowEditingOfSongNotes (e) {
     e.preventDefault();
     $(".editSpace").show();
     let songId = $(this).data('song-id');
     let moodId = $(this).data('mood-id');
-    let reqUrl = ('/api/moods/' + moodId + '/songs/' + songId);
 
     $('.editSave').on('click', function(e){
       e.preventDefault();
       let editVal = $(`textarea.${songId}`).val();
       $.ajax({
         method: "PUT",
-        url: reqUrl,
+        url: '/api/moods/' + moodId + '/songs/' + songId,
         data: {notes: editVal},
         success: function(data) {
           $(".editSpace").hide();
@@ -84,8 +75,7 @@ $(document).ready(function(){
     });
   });
 
-  //delete a song on click of X button
-  $(document).on('click', '.delete', function(e) {
+  $(document).on('click', '.delete', function deleteSong (e) {
     e.preventDefault();
     let delSong = confirm("Are you sure you want to delete this song?");
     if (delSong) {
@@ -103,24 +93,21 @@ $(document).ready(function(){
     };
   });
 
-  // delete a mood
-  $(document).on('click', '.deleteMood', function(e) {
+  $(document).on('click', '.deleteMood', function deleteMood (e) {
     let delMood = confirm("Are you sure you want to delete this mood?");
     if (delMood) {
-    let moodId = $(this).data('mood-id');
+      let moodId = $(this).data('mood-id');
       $.ajax({
-      method: 'DELETE',
-      url: ('/api/moods/' + moodId),
-      success: function () {
-        $('.current-mood').remove();
-        location.reload();
-      },
-      error: onError
+        method: 'DELETE',
+        url: ('/api/moods/' + moodId),
+        success: function () {
+          $('.current-mood').remove();
+          location.reload();
+        },
+        error: onError
       });
     };
   });
-
-
 
   function renderMoodButton(mood) {
     let moodSelections = `<div class="col-2 mood" data-id=${mood._id} style="background-color:${mood.color}">${mood.name}</div>`
@@ -179,20 +166,18 @@ $(document).ready(function(){
       $currentMood.append(deleteMoodButton);
   };
 
-  function onGetSuccess(moodsData) {
-    moodsData.forEach(function(mood) {
-      renderMoodButton(mood);
-    });
+  function onGetMoodsSuccess(moodsData) {
+    moodsData.forEach(renderMoodButton);
   };
 
-  function onGetOneSuccess(oneMood) {
+  function onGetMoodSuccess(oneMood) {
     changeMoodBackground(oneMood);
     displayMood(oneMood);
   };
 
-  function onPostOneSuccess(postedSong) {
+  function onPostMoodSuccess(postedSong) {
     renderMoodButton(postedSong);
-    onGetOneSuccess(postedSong);
+    onGetMoodSuccess(postedSong);
   };
 
   function onPostSongSuccess(postedSong) {
@@ -200,14 +185,7 @@ $(document).ready(function(){
     ('#addSongModal').hide();
   };
 
-   function onDeleteSuccess(postedSong) {
-    displayAccordionContent(postedSong);
-
-  };
-
   function onError(err) {
     console.log("There was an error ", err);
   };
-
-
-}); //document ready end
+});
