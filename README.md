@@ -11,3 +11,4 @@ This app was built primarily using javascript and love. The frontend was designe
 This application allows users to receive a curated list of songs for a given mood. Users can add, delete and make notes to songs within each mood. They can also create new moods entirely and create playlists themselves. 
 
 ### Planned Features 
+
