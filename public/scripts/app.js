@@ -58,24 +58,26 @@ $(document).ready(function(){
   // edit notes on a song
   $(document).on('click', '.edit', function(e) {
     e.preventDefault();
-    console.log("edit button clicked");
     $(".editSpace").show();
     let songId = $(this).data('song-id');
     let moodId = $(this).data('mood-id');
     let reqUrl = ('/api/moods/' + moodId + '/songs/' + songId);
 
-    $(document).on('click','.editSave', function(e){
+    $('.editSave').on('click', function(e){
       e.preventDefault();
-      console.log('save button clicked');
       let editVal = $(`textarea.${songId}`).val();
       $.ajax({
         method: "PUT",
         url: reqUrl,
         data: {notes: editVal},
         success: function(data) {
-          console.log(data);
-          //console.log(data.songs);
-          displayAccordionContent(data);
+          $(".editSpace").hide();
+          let songs = data.songs;
+          for(let i = 0; i < songs.length; i++) {
+            if(songs[i]._id == songId) {
+              $(`p.${songId}`).html(songs[i].notes);
+            }
+          }
         },
         error: onError
       });
@@ -129,10 +131,8 @@ $(document).ready(function(){
   function displayAccordionContent(mood) {
     $("#songsAccordion").empty();
     let songsList = mood.songs;
-    console.log(songsList);
     for (let i = 0; i < songsList.length; i++) {
       let songId = songsList[i]._id;
-      console.log(songId);
       let songName = songsList[i].name;
       let songArtist = songsList[i].artist;
       let songUrl = songsList[i].url;
@@ -143,7 +143,7 @@ $(document).ready(function(){
         </a>
         <div id="songAccordion${i+1}" class="collapse" role="tabpanel">
           <div><iframe width="50%" height="300" scrolling="no" frameborder="no" src="${songUrl}&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe></div>
-          <p class="mb-3">${songNotes}</p>
+          <p class="mb-3 ${songId}">${songNotes}</p>
           <div class="form-group col-md-6 editSpace" style="display: none">
             <label for="editNotes">Notes:</label>
             <textarea class="form-control editNotes ${songId}" rows="3" name="notes"></textarea>
@@ -160,14 +160,14 @@ $(document).ready(function(){
   function displayMood(mood) {
     let $currentMood = $(".current-mood");
     $currentMood.empty();
-    let deleteMoodButton = `<button type="button" data-mood-id=${mood._id} class="btn btn-dark deleteMood"><i class="fas fa-times"></i></button>`
+    let deleteMoodButton = `<button type="button" data-mood-id=${mood._id} class="btn btn-dark deleteMood">x</button>`
     let titleContent = `<div class="row" data-mood-id=${mood._id}>
         <div class="col-md-6 mood-title"><h1>${mood.name}</h1></div>
         <div class="col-md-6 mood-title"><p>${mood.description}</p></div>
       </div>
       <div class="col-md-6 mood-title"><h3>SONGS</h3></div>`
     let accordionDiv = `<div class="col-md-12" id="songsAccordion" data-children=".item"></div>`
-    let addSongButton = `<div class="col-md-12"><button type="button" data-mood-id=${mood._id} class="btn btn-light addSongButton"><i class="fas fa-plus"></i></button></div>`
+    let addSongButton = `<hr><div class="col-md-12"><button type="button" data-mood-id=${mood._id} class="btn btn-light addSongButton">+</i></button></div>`
       $currentMood.append(titleContent);
       $currentMood.append(accordionDiv);
       displayAccordionContent(mood);

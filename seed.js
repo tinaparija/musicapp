@@ -40,17 +40,20 @@ var moods_list =
 		  	{
 		  		name: "Fool Of Me",
 		  		artist: "Say Lou Lou",
-		  		url: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/90432050"
+		  		url: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/90432050",
+					notes: ""
 		  	},
 		  	{
 		  		name: "Shadow's Song",
 		  		artist: "Foxes in Fiction",
-		  		url: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/157001778"
+		  		url: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/157001778",
+					notes: ""
 		  	},
 		  	{
 		  		name: "Armchairs",
 		  		artist: "Andrew Bird",
-		  		url: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/19536882"
+		  		url: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/19536882",
+					notes: ""
 		  	}]
 },
 {
@@ -63,17 +66,20 @@ var moods_list =
 		  	{
 		  		name: "One Step Closer",
 		  		artist: "Linkin Park",
-		  		url: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/7723321"
+		  		url: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/7723321",
+					notes: ""
 		  	},
 		  	{
 		  		name: "Coming Undone",
 		  		artist: "Korn",
-		  		url: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/113927942"
+		  		url: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/113927942",
+					notes: ""
 		  	},
 		  	{
 		  		name: "MakeDamnSure",
 		  		artist: "Taking Back Sunday",
-		  		url: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/220647601"
+		  		url: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/220647601",
+					notes: ""
 		  	}]
 },
 {
@@ -86,17 +92,20 @@ var moods_list =
 		  	{
 		  		name: "Clouds",
 		  		artist: "Imagined Herbal Flows",
-		  		url: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/180519630"
+		  		url: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/180519630",
+					notes: ""
 		  	},
 		  	{
 		  		name: "Love Undone",
 		  		artist: "Lost Midas",
-		  		url: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/104171442"
+		  		url: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/104171442",
+					notes: ""
 		  	},
 		  	{
 		  		name: "California Analogue Dream",
 		  		artist: "Vondelpark",
-		  		url: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/82549966"
+		  		url: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/82549966",
+					notes: ""
 		  	}]
 }];
 
