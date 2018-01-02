@@ -12,3 +12,7 @@ This application allows users to receive a curated list of songs for a given moo
 
 ### Planned Features 
 
+* User accounts 
+* User Research ---> Style Updates 
+* Uploading Downloaded Music 
+* Integration with Spotify, Pandora, Itunes, etc. 

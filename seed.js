@@ -32,7 +32,7 @@ var moods_list =
 },
 {
 	name: "Depressed",
-	color: "#000000",
+	color: "#696969",
 	description: "Songs to cry to.",
 	imageURL: "https://ak4.picdn.net/shutterstock/videos/6062744/thumb/1.jpg",
 	imageSpeed: 20,
