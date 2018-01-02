@@ -154,14 +154,14 @@ $(document).ready(function(){
   function displayMood(mood) {
     let $currentMood = $(".current-mood");
     $currentMood.empty();
-    let deleteMoodButton = `<button type="button" data-mood-id=${mood._id} class="btn btn-dark deleteMood"><i class="fas fa-times"></i></button>`
+    let deleteMoodButton = `<button type="button" data-mood-id=${mood._id} class="btn btn-dark deleteMood">x</button>`
     let titleContent = `<div class="row" data-mood-id=${mood._id}>
         <div class="col-md-6 mood-title"><h1>${mood.name}</h1></div>
         <div class="col-md-6 mood-title"><p>${mood.description}</p></div>
       </div>
       <div class="col-md-6 mood-title"><h3>SONGS</h3></div>`
     let accordionDiv = `<div class="col-md-12" id="songsAccordion" data-children=".item"></div>`
-    let addSongButton = `<div class="col-md-12"><button type="button" data-mood-id=${mood._id} class="btn btn-light addSongButton"><i class="fas fa-plus"></i></button></div>`
+    let addSongButton = `<hr><div class="col-md-12"><button type="button" data-mood-id=${mood._id} class="btn btn-light addSongButton">+</i></button></div>`
       $currentMood.append(titleContent);
       $currentMood.append(accordionDiv);
       displayAccordionContent(mood);
