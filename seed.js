@@ -14,19 +14,19 @@ var moods_list =
 		  	{
 		  		name: "Breakdance Lesson",
 		  		artist: "Kaytranada",
-		  		url: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/252290297",
+		  		url: '<iframe width="100%" height="300" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/252290297&amp;color=%23ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true&amp;visual=true"></iframe>',
 					notes: ""
 		  	},
 		  	{
 		  		name: "Love Strong",
 		  		artist: "Moon Boots",
-		  		url: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/92187982",
+		  		url: '<iframe width="100%" height="300" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/92187982&amp;color=%23ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true&amp;visual=true"></iframe>',
 					notes: ""
 		  	},
 		  	{
 		  		name: "Stayin' Alive",
 		  		artist: "The Bee Gees",
-		  		url: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/140102039",
+		  		url: '<iframe width="100%" height="300" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/140102039&amp;color=%23ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true&amp;visual=true"></iframe>',
 					notes: ""
 		  	}]
 },
@@ -40,19 +40,19 @@ var moods_list =
 		  	{
 		  		name: "Fool Of Me",
 		  		artist: "Say Lou Lou",
-		  		url: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/90432050",
+		  		url: '<iframe width="100%" height="300" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/90432050&amp;color=%23ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true&amp;visual=true"></iframe>',
 					notes: ""
 		  	},
 		  	{
 		  		name: "Shadow's Song",
 		  		artist: "Foxes in Fiction",
-		  		url: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/157001778",
+		  		url: '<iframe width="100%" height="300" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/157001778&amp;color=%23ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true&amp;visual=true"></iframe>',
 					notes: ""
 		  	},
 		  	{
 		  		name: "Armchairs",
 		  		artist: "Andrew Bird",
-		  		url: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/19536882",
+		  		url: '<iframe width="100%" height="300" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/19536882&amp;color=%23ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true&amp;visual=true"></iframe>',
 					notes: ""
 		  	}]
 },
@@ -66,19 +66,19 @@ var moods_list =
 		  	{
 		  		name: "One Step Closer",
 		  		artist: "Linkin Park",
-		  		url: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/7723321",
+		  		url: '<iframe width="100%" height="300" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/7723321&amp;color=%23ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true&amp;visual=true"></iframe>',
 					notes: ""
 		  	},
 		  	{
 		  		name: "Coming Undone",
 		  		artist: "Korn",
-		  		url: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/113927942",
+		  		url: '<iframe width="100%" height="300" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/113927942&amp;color=%23ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true&amp;visual=true"></iframe>',
 					notes: ""
 		  	},
 		  	{
 		  		name: "MakeDamnSure",
 		  		artist: "Taking Back Sunday",
-		  		url: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/220647601",
+		  		url: '<iframe width="100%" height="300" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/220647601&amp;color=%23ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true&amp;visual=true"></iframe>',
 					notes: ""
 		  	}]
 },
@@ -92,19 +92,19 @@ var moods_list =
 		  	{
 		  		name: "Clouds",
 		  		artist: "Imagined Herbal Flows",
-		  		url: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/180519630",
+		  		url: '<iframe width="100%" height="300" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/180519630&amp;color=%23ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true&amp;visual=true"></iframe>',
 					notes: ""
 		  	},
 		  	{
 		  		name: "Love Undone",
 		  		artist: "Lost Midas",
-		  		url: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/104171442",
+		  		url: '<iframe width="100%" height="300" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/104171442&amp;color=%23ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true&amp;visual=true"></iframe>',
 					notes: ""
 		  	},
 		  	{
 		  		name: "California Analogue Dream",
 		  		artist: "Vondelpark",
-		  		url: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/82549966",
+		  		url: '<iframe width="100%" height="300" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/82549966&amp;color=%23ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true&amp;visual=true"></iframe>',
 					notes: ""
 		  	}]
 }];
