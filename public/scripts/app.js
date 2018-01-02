@@ -87,6 +87,7 @@ $(document).ready(function(){
   //delete a song on click of X button
   $(document).on('click', '.delete', function(e) {
     e.preventDefault();
+    confirm("Are you sure you want to delete this song?");
     let songId = $(this).data('song-id');
     let moodId = $(this).data('mood-id');
     let reqUrl = ('/api/moods/' + moodId + '/songs/' + songId );
@@ -100,19 +101,18 @@ $(document).ready(function(){
     });
   });
 
-  // delete a mood 
+  // delete a mood
   $(document).on('click', '.deleteMood', function(e) {
-    console.log("Delete button clicked");
+    confirm("Are you sure you want to delete this mood?");
     let moodId = $(this).data('mood-id');
     $.ajax({
     method: 'DELETE',
     url: ('/api/moods/' + moodId),
     success: function () {
-      console.log("mood deleted");
       $('.current-mood').remove();
       location.reload();
     },
-    error: onError 
+    error: onError
     });
   });
 
