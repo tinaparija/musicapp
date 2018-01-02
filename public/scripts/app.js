@@ -43,7 +43,6 @@ $(document).ready(function(){
     let moodId = $(this).data('mood-id');
       $('#addSongForm').on('submit', function(e) {
         e.preventDefault();
-        this.reset();
         $('#addSongModal').modal('hide');
         $.ajax({
           method: 'POST',
@@ -52,6 +51,7 @@ $(document).ready(function(){
           success: onPostSongSuccess,
           error: onError
         });
+        this.reset();
       });
   });
 
